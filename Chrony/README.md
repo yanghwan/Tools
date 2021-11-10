@@ -1,7 +1,7 @@
 # Chrony  
 
-chrony는 NTP(Network Time Protocol) 을 구현한 server/client 로 기존 리눅스의 ntpd 를 대체합니다.
-특히 RedHat8 and ProLinux8 부터는 기본 NTP로 패키징되어 있다. 
+chrony는 NTP(Network Time Protocol)을 구현한 server/client 형태로 구성을 하며, 기준 리눅스의 NTPD를 대체합니다.
+특히 RedHat8 and ProLinux8 부터는 기본 NTP로 패키징되어 있으며, 
 국내에서 NTP Server가 운영되고 있는 주소는  많이 사용하고 있는 NTP 주소이며, URL를 접속하게 
 Address : kr.pool.ntp.org / time.bora.net / time.nuri.net
 URL : http://time.ewha.or.kr/domestic.html  
@@ -21,39 +21,28 @@ pool 2.pl.pool.ntp.org iburst
 
 # Record the rate at which the system clock gains/losses time.  # 시간오차치를 보존해두는 파일정보
 driftfile /var/lib/chrony/drift
-
 # Allow the system clock to be stepped in the first three updates
 # if its offset is larger than 1 second.
 makestep 1.0 3
-
 # Enable kernel synchronization of the real-time clock (RTC).
 rtcsync
-
 # Enable hardware timestamping on all interfaces that support it.
 #hwtimestamp *
-
 # Increase the minimum number of selectable sources required to adjust
 # the system clock.
 #minsources 2
-
 # Allow NTP client access from local network.
 allow 192.168.0.0/16
-
 # Serve time even if not synchronized to a time source.
 local stratum 3
-
 # Specify file containing keys for NTP authentication.
 keyfile /etc/chrony.keys
-
 # Get TAI-UTC offset and leap seconds from the system tz database.
 #leapsectz right/UTC
-
 # Specify directory for log files.
 logdir /var/log/chrony
-
 # Select which information is logged.
 #log measurements statistics tracking
-
 # restrict 127.xxx.xxx.xxx  #Peer들이 본서버로 Sync를 하는 것을 제한
 ```    
 서버 및 Clinet의 참조하는 주소를 변경하여 시간 동기화를 할수있으며, Client는 아래 옵션을 주석처리해서 재기동하면 됩니다.
