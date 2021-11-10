@@ -7,15 +7,15 @@ Address : kr.pool.ntp.org / time.bora.net / time.nuri.net
 URL : http://time.ewha.or.kr/domestic.html  
 
 
-	NTP (TimeServer) 구성
+*	NTP (TimeServer) 구성
  
 
 내부에 fail over를 위해 Stratum 3 level의 Time server 2대를 구성하고, private network 안에 있는 server/client 들이 이 time server를 통해서 시간 동기화를 하도록 구성을 하도록 합니다.
 그리고, 2대의 Time server 간에는 peer 구성을 하여 서로 동기화를 하게 할 수 있지만, 제 개인적인 견해로는 Time service 특성상 peer 구성 보다는 그냥 master 2대로 구성하는 것이 관리상 더 편했던 것 같습니다. 그래서 여기서는 peer 구성은 하지 않고 그냥 time server 2대를 독립적으로 구성하되, sync할 stratum 2 level의 서버를 동일하게 지정하여 peer 설정을 한 것과 비슷하게 구성을 할 것입니다.
 
 Chrony는 기본적으로 UDP 123번 포트를 사용하기 때문에 Time Server1/Time Server2에 대한 포트를 Allow 해줘야 되며, 방화벽은 반드시 확인이 필요하다.
-
-	설정파일
+* 설정파일  
+```bash
 [root@master2 etc]# cat /etc/chrony.conf
 pool 2.pl.pool.ntp.org iburst
 
@@ -55,19 +55,23 @@ logdir /var/log/chrony
 #log measurements statistics tracking
 
 # restrict 127.xxx.xxx.xxx  #Peer들이 본서버로 Sync를 하는 것을 제한
-
-	서버 및 Clinet의 참조하는 주소를 변경하여 시간 동기화를 할수있으며, Client는 아래 옵션을 주석처리해서 재기동하면 됩니다.
+```    
+서버 및 Clinet의 참조하는 주소를 변경하여 시간 동기화를 할수있으며, Client는 아래 옵션을 주석처리해서 재기동하면 됩니다.
+```bash
 # Allow NTP client access from local network. – 제외
 # Serve time even if not synchronized to a time source. – 제외
 #server  xxx.xxx.xxx.xxx  iburst – chrony server ip
+```  
 
-	서비스종료 / 시작
+* 서비스종료 / 시작  
+``` bash
 [root@master1 etc]# systemctl stop  chronyd
 [root@master1 etc]# systemctl start  chronyd
 [root@master1 etc]# systemctl restart  chronyd
 [root@master1 etc]# systemctl enstart  chronyd
-
-	Chronyd 상태확인
+```  
+*	Chronyd 상태확인  
+```bash
 [root@master1 ~]# service chronyd status
 Redirecting to /bin/systemctl status chronyd.service
 [0m chronyd.service - NTP client/server
@@ -92,9 +96,10 @@ Main PID: 985 (chronyd)
 1104 00:30:45 master1 chronyd[985]: System clock TAI offset set to 37 seconds
 1104 00:30:45 master1 chronyd[985]: System clock wrong by -29.389047 seconds, adjustment started
 1104 00:30:16 master1 chronyd[985]: System clock was stepped by -29.389047 s
+```  
 
-
-	TimeDate 확인
+* TimeDate 확인
+```bash  
 [root@master1 ~]# timedatectl
                Local time: 2021-11-08 05:20:19 EST
            Universal time: 2021-11-08 10:20:19 UTC
@@ -103,9 +108,10 @@ Main PID: 985 (chronyd)
 System clock synchronized: yes
               NTP service: active
           RTC in local TZ: no
+```  
 
-
-	chronyc 설정
+* chronyc 설정  
+```bash  
 root@master1 ~]# chronyc
 chrony version 3.5
 Copyright (C) 1997-2003, 2007, 2009-2019 Richard P. Curnow and others
@@ -133,9 +139,10 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 
 M Info – ( ^ 서버 / = 피어 / # 로컬) 
 S Info – ( * 현재 동기화중 / + 등록한 소스와 동기화 가능 / - 등록한 소스와 동기화 불가능 / ? or blank(빈칸) : 응답 없음(unreachable) / x 서버와 시간차이가 큼) 
+```
 
-
-	실시간 시간동기화 
+* 실시간 시간동기화 
+```bash  
 [root@master1 etc]# chronyc -a makestep
 200 OK
 
@@ -147,9 +154,10 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^+ ntp.ifj.edu.pl                1   6    37    47  +1266us[+1266us] +/-  149ms
 ^- ntp2.tktelekom.pl             2   6    37    47   +513us[ +513us] +/-  165ms
 ^* ntp.coi.pw.edu.pl             1   6    37    48   +558us[+1133us] +/-  148ms
+```  
 
-	상태확인 
-
+*	상태확인 
+```bash  
 - Server
 [root@master2 etc]# chronyc sources
 210 Number of sources = 4
@@ -168,32 +176,10 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^+ 192.168.178.43                3   6    17    26  +8928us[+8928us] +/-  169ms
 ^* 192.168.178.44                2   6    17    26  -7974us[-7983us] +/-  151ms
 
+```
 
-
-	상태확인 
-
-- Server
-[root@master2 etc]# chronyc sources
-210 Number of sources = 4
-MS Name/IP address         Stratum Poll Reach LastRx Last sample               
-===============================================================================
-^+ 46.175.224.7.maxnet.net.>     2   6    37    48  -4800us[-4225us] +/-  179ms
-^+ ntp.ifj.edu.pl                1   6    37    47  +1266us[+1266us] +/-  149ms
-^- ntp2.tktelekom.pl             2   6    37    47   +513us[ +513us] +/-  165ms
-^* ntp.coi.pw.edu.pl             1   6    37    48   +558us[+1133us] +/-  148ms
-
-- Client
-[root@master3 etc]# chronyc sources 
-210 Number of sources = 2
-MS Name/IP address         Stratum Poll Reach LastRx Last sample               
-===============================================================================
-^+ 192.168.178.43                3   6    17    26  +8928us[+8928us] +/-  169ms
-^* 192.168.178.44                2   6    17    26  -7974us[-7983us] +/-  151ms
-
-
-
-	NTP Tracking 
-
+* NTP Tracking 
+```bash
 [root@master3 etc]# chronyc tracking
 Reference ID    : C0A8B22B (192.168.178.43)
 Stratum         : 5
@@ -208,4 +194,4 @@ Root delay      : 0.172546864 seconds
 Root dispersion : 0.002234325 seconds
 Update interval : 64.2 seconds
 Leap status     : Normal
-
+```
