@@ -1,17 +1,15 @@
 # Chrony  
 
 chrony는 NTP(Network Time Protocol)을 구현한 server/client 형태로 구성을 하며, 기준 리눅스의 NTPD를 대체합니다.
-특히 RedHat8 and ProLinux8 부터는 기본 NTP로 패키징되어 있으며, 
-국내에서 NTP Server가 운영되고 있는 주소는  많이 사용하고 있는 NTP 주소이며, URL를 접속하게 
+특히 RedHat8 and ProLinux8 부터는 기본 NTP로 패키징되어 있으며, 타임서버 리스트(Stratum)에 대해서는   
 Address : kr.pool.ntp.org / time.bora.net / time.nuri.net
-URL : http://time.ewha.or.kr/domestic.html  
-
+많이 사용을 하고 있지만, 국내 타임서버 리스트는  http://time.ewha.or.kr/domestic.html에서 정보를 확인할수 있습니다.  
 
 *	NTP (TimeServer) 구성
+ ![ntp_1](https://user-images.githubusercontent.com/39255123/141034679-0bf319f8-286f-4691-9eb1-847bf0f6bacd.jpg)
  
-
 내부에 fail over를 위해 Stratum 3 level의 Time server 2대를 구성하고, private network 안에 있는 server/client 들이 이 time server를 통해서 시간 동기화를 하도록 구성을 하도록 합니다.
-그리고, 2대의 Time server 간에는 peer 구성을 하여 서로 동기화를 하게 할 수 있지만, 제 개인적인 견해로는 Time service 특성상 peer 구성 보다는 그냥 master 2대로 구성하는 것이 관리상 더 편했던 것 같습니다. 그래서 여기서는 peer 구성은 하지 않고 그냥 time server 2대를 독립적으로 구성하되, sync할 stratum 2 level의 서버를 동일하게 지정하여 peer 설정을 한 것과 비슷하게 구성을 할 것입니다.
+그리고, 2대의 Time server 간에는 peer 구성을 하여 서로 동기화를 하게 할 수 있지만, Time service 특성상 peer 구성 보다는 그냥 master 2대로 구성하는 것이 관리상 더 편했던 것 같습니다. 그래서 여기서는 peer 구성은 하지 않고 그냥 time server 2대를 독립적으로 구성하되, sync할 stratum 2 level의 서버를 동일하게 지정하여 peer 설정을 한 것과 비슷하게 구성을 할 것입니다.
 
 Chrony는 기본적으로 UDP 123번 포트를 사용하기 때문에 Time Server1/Time Server2에 대한 포트를 Allow 해줘야 되며, 방화벽은 반드시 확인이 필요하다.
 * 설정파일  
