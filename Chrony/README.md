@@ -47,7 +47,12 @@ logdir /var/log/chrony
 ```bash
 # Allow NTP client access from local network. – 제외
 # Serve time even if not synchronized to a time source. – 제외
-#server  xxx.xxx.xxx.xxx  iburst – chrony server ip
+#server  xxx.xxx.xxx.xxx  iburst – chrony server ip 
+
+ex)
+#allow 192.168.0.0/16  
+##local stratum 3  
+server 192.168.178.44 iburst  
 ```  
 
 * 서비스종료 / 시작  
