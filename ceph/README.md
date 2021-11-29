@@ -92,11 +92,6 @@ mgr 데몬을 mons와 동일한 노드에 배치하는 것은 필수는 아니�
     "dashboard": "https://master1:8443/",
     "prometheus": "http://master1:9283/"
 }
-[root@master1 ceph]# ceph mgr services
-{
-    "dashboard": "https://master1:8443/",
-    "prometheus": "http://master1:9283/"
-}
 ```
 
 * 설정파일  
