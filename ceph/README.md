@@ -33,10 +33,9 @@ Ceph의 고급 기능에는 를 통한 Ceph Storage Cluster에 대한 기본 인
 - New Ceph Cluster Install  
 INSTALL CEPHADM >> ADDING HOSTS >> ADDING ADDITIONAL MONS >> ADDING STORAGE >> ENABLING OSD MEMORY AUTOTUNING >> USING CEPH (CephFS,RGW,NFS,iSCSI)  
 
-Ceph를 설치하는 방법에는 여러 가지가 방법을 지원하지만, Cephadm 은 CLI 및 대시보드 GUI와의 긴밀한 통합으로 컨테이너 및 systemd를 사용하여 Ceph 클러스터를 설치 및 관리합니다.  
-cephadm은 Octopus 및 최신 릴리스버전을 지원하며, cephadm은 새로운 오케스트레이션 API와 완전히 통합되며 클러스터 배포를 관리하기 위한 새로운 CLI 및 대시보드 기능을 완벽하게 지원합니다.
+Ceph를 설치하는 방법에는 여러 가지가 방법을 지원하지만, Cephadm은 CLI 및 대시보드 GUI와의 긴밀한 통합으로 컨테이너 및 systemd를 사용하여 Ceph 클러스터를 설치 및 관리합니다.  
 ```bash
-# bootstrap 방식으로 구축시 쉡게 설치를 할수 있음.
+# cephadm의 bootstrap 방식으로 구축시 쉡게 설치를 할수 있음.
 #cephadm bootstrap --mon-ip *<mon-ip>*
 ```
 
