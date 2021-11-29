@@ -1,8 +1,15 @@
 # CEPH  
 
+Open source distributed storage로써,  하나의 cluster로 file, block, object storage 제공  
+
+![image](https://user-images.githubusercontent.com/39255123/143794426-c0d83e04-fc65-4bf4-83a8-4ac80545198c.png)
+
+
+
 Reliable Automatic Distributed Object Store 
 - Ceph cluster의 모니터링, 관리 그리고 data의 저장 및 분산과 같은 Ceph의 실질적인 기능 제공한다.  
-
+ ![ceph 구성](https://user-images.githubusercontent.com/39255123/143794034-dc018528-9e94-4d8f-b9f9-9cc2a7c71d79.PNG)  
+RADOS는 기본적으로 OSD, MON, MGR 데몬으로 구성되며, 사용하는 storage type에  따라서 MDS와 RGW를 추가적으로 사용된다.
 
 
 
