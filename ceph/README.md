@@ -26,6 +26,15 @@ Ceph 메타데이터 서버(MDS) : CephFS를 사용하여 파일 서비스를 �
 스토리지 클러스터 클라이언트와 각 Ceph OSD 데몬 은 중앙 조회 테이블에 의존하지 않고 CRUSH 알고리즘을 사용하여 데이터 위치에 대한 정보를 효율적으로 계산합니다.  
 Ceph의 고급 기능에는 를 통한 Ceph Storage Cluster에 대한 기본 인터페이스(librados와 librados)를 사용한다.  
 
+* A NEW CEPH CLUSTER  
+REQUIREMENTS  
+( Python 3 , Systemd , Podman or Docker for running containers , Time synchronization (such as chrony or NTP) , LVM2 for provisioning storage devices )
+New Ceph Cluster Install 
+INSTALL CEPHADM >> ADDING HOSTS >> ADDING ADDITIONAL MONS >> ADDING STORAGE >> ENABLING OSD MEMORY AUTOTUNING >> USING CEPH 
+
+
+
+
 ##	CEPH  구축하기  
 ### DISK 초기화
 
