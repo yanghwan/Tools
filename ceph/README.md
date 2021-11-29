@@ -27,10 +27,17 @@ Ceph 메타데이터 서버(MDS) : CephFS를 사용하여 파일 서비스를 �
 Ceph의 고급 기능에는 를 통한 Ceph Storage Cluster에 대한 기본 인터페이스(librados와 librados)를 사용한다.  
 
 * A NEW CEPH CLUSTER  
-REQUIREMENTS  
-( Python 3 , Systemd , Podman or Docker for running containers , Time synchronization (such as chrony or NTP) , LVM2 for provisioning storage devices )
-New Ceph Cluster Install 
-INSTALL CEPHADM >> ADDING HOSTS >> ADDING ADDITIONAL MONS >> ADDING STORAGE >> ENABLING OSD MEMORY AUTOTUNING >> USING CEPH 
+- REQUIREMENTS  
+( Python 3 , Systemd , Podman or Docker for running containers , Time synchronization (such as chrony or NTP) , LVM2 for provisioning storage devices )  
+  
+- New Ceph Cluster Install  
+INSTALL CEPHADM >> ADDING HOSTS >> ADDING ADDITIONAL MONS >> ADDING STORAGE >> ENABLING OSD MEMORY AUTOTUNING >> USING CEPH (CephFS,RGW,NFS,iSCSI)  
+
+```bash
+# bootstrap 방식으로 구축시 쉡게 설치를 할수 있음.
+#cephadm bootstrap --mon-ip *<mon-ip>*
+```
+
 
 
 
