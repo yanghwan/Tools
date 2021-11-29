@@ -54,9 +54,23 @@ drwxrws--T.  3 ceph ceph     106 11월 29 08:08 .
 ### Ceph Manager 
 ceph-ansible 또는 cephadm과 같은 일반 배포 도구를 사용하여 각 mon 노드에 ceph-mgr 데몬을 설정합니다.  
 mgr 데몬을 mons와 동일한 노드에 배치하는 것은 필수는 아니지만 거의 항상 합리적입니다.  
+Active - StandBy로 구성이 되며, "ceph mgr services"  Command를 활용해서 접속 URL를 확인할수 있다.
 
-* mgr service Info
+
+
+* mgr service Info 및 master change
 ```bash
+# mgr yaml 정보 확인하기 
+[root@master1 ~]# ceph orch ls --service-type  mgr --export  >> mgr.yaml
+[root@master1 ~]# vi mgr.yaml
+service_type: mgr
+service_name: mgr
+placement:
+  hosts:
+  - master1
+  - master2
+
+
 [root@master1 ceph]# ceph tell mgr status
 {
     "metadata": {},
@@ -92,7 +106,13 @@ mgr 데몬을 mons와 동일한 노드에 배치하는 것은 필수는 아니�
     "dashboard": "https://master1:8443/",
     "prometheus": "http://master1:9283/"
 }
+# DashBoard Server 및 Port 변경이 가능하다.
+[root@master1 ~]# ceph config set mgr mgr/dashboard/server_addr master2
+[root@master1 ~]# ceph config set mgr mgr/dashboard/server_port 8443
+
 ```
+
+
 
 * 설정파일  
 ```bash
