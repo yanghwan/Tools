@@ -114,7 +114,8 @@ placement:
 ```
 
 #### Ceph Monitoring
-https://user-images.githubusercontent.com/39255123/143828201-68d6c71c-ceff-4c22-a466-d4793d095549.PNG
+![image](https://user-images.githubusercontent.com/39255123/143828201-68d6c71c-ceff-4c22-a466-d4793d095549.PNG)
+
 
 
 
