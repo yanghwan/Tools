@@ -52,8 +52,52 @@ drwxrws--T.  3 ceph ceph     106 11월 29 08:08 .
 ```  
 
 ### Ceph Manager 
+ceph-ansible 또는 cephadm과 같은 일반 배포 도구를 사용하여 각 mon 노드에 ceph-mgr 데몬을 설정합니다.  
+mgr 데몬을 mons와 동일한 노드에 배치하는 것은 필수는 아니지만 거의 항상 합리적입니다.  
 
-
+* mgr service Info
+```bash
+[root@master1 ceph]# ceph tell mgr status
+{
+    "metadata": {},
+    "dentry_count": 0,
+    "dentry_pinned_count": 0,
+    "id": 0,
+    "inst": {
+        "name": {
+            "type": "mgr",
+            "num": 194100
+        },
+        "addr": {
+            "type": "v1",
+            "addr": "192.168.178.43:0",
+            "nonce": 3462877193
+        }
+    },
+    "addr": {
+        "type": "v1",
+        "addr": "192.168.178.43:0",
+        "nonce": 3462877193
+    },
+    "inst_str": "mgr.194100 192.168.178.43:0/3462877193",
+    "addr_str": "192.168.178.43:0/3462877193",
+    "inode_count": 0,
+    "mds_epoch": 0,
+    "osd_epoch": 1677,
+    "osd_epoch_barrier": 0,
+    "blacklisted": false
+}
+[root@master1 ceph]# ceph mgr services
+{
+    "dashboard": "https://master1:8443/",
+    "prometheus": "http://master1:9283/"
+}
+[root@master1 ceph]# ceph mgr services
+{
+    "dashboard": "https://master1:8443/",
+    "prometheus": "http://master1:9283/"
+}
+```
 
 * 설정파일  
 ```bash
