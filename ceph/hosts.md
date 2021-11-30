@@ -1,10 +1,3 @@
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-```
-
 ## ADDING HOSTS  
 
 To add each new host to the cluster, perform two steps:  
