@@ -3,6 +3,7 @@
 + text in green
 ! text in orange
 # text in gray
+```
 
 ## ADDING HOSTS  
 
@@ -70,9 +71,8 @@ addr: 192.168.0.12
 ```
 
 ```diff
-- SPECIAL HOST LABELS (_no_schedule , _no_autotune_memory , _admin )를 이용하여 drain으로 관리방법
+- SPECIAL HOST LABELS (_no_schedule , _no_autotune_memory , _admin )를 이용하여 drain으로 관리방법  
 - 로그 관리방법
-
 ```
 
 
