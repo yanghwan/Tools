@@ -29,54 +29,37 @@ For example:
 #ceph config set mon public_network 10.1.2.0/24,192.168.0.1/24
 ```
 
-2. 신규 Node 추가
+2. MOVING MONITORS TO A DIFFERENT NETWORK
 
 ```bash
-#ceph orch host add *<newhost>* [*<ip>*] [*<label1> ...*]
+#ceph orch apply mon --unmanaged #비활성화
+#ceph orch daemon add mon *<newhost1:ip-or-network1>* #신규추가
+#ceph orch daemon rm *mon.<oldhost1>* #제거
+#ceph config set mon public_network *<mon-cidr-network>* #Update
+#ceph orch apply mon --placement="newhost1,newhost2,newhost3" --dry-run # 활성화
+#ceph orch apply mon --placement="newhost1,newhost2,newhost3" #위치적용
+```
+3. MOM Host 추가
+```bash
+#ceph orch apply mon host1
+#ceph orch apply mon host2
+#ceph orch apply mon host3
 
-For example:
-#ceph orch host add host2 10.10.0.102
-#ceph orch host add host3 10.10.0.103
+#ceph orch apply mon "host1,host2,host3" #일괄등록
+```
 
-For Label ADD
-#ceph orch host add host4 10.10.0.104 --labels master
-
-# YAML를 이용하여 일괄등록하는 방식
+4. YAML를 이용하여 일괄등록하는 방식
 
 # YAML 파일로 저장하고 ceph orch apply -i yaml명 을 이용하여 일괄저장할수 있다.
-service_type: host
-hostname: node-00
-addr: 192.168.0.10
-labels:
-- example1
-- example2
----
-service_type: host
-hostname: node-01
-addr: 192.168.0.11
-labels:
-- grafana
----
-service_type: host
-hostname: node-02
-addr: 192.168.0.12
-
+service_type: mon
+placement:
+  hosts:
+   - host1
+   - host2
+   - host3
 ```
 
-
-3. 호스트 제거
-
-```bash
-# 호스트는 클러스터에서 모든 데몬이 제거되면 클러스터에서 안전하게 제거하는 방식
-#ceph orch host drain *<host>*
-#ceph orch osd rm status (OSD 상태)
-#ceph orch ps <host> (완전삭제)
-
-# Off-Line 상태에서 강제 제거하는 방식
-#ceph orch host rm <host>  --force
-```
-
-4. 확인작업
+5. 확인작업
 ```bash
 # 
 [root@master1 var]# ceph orch ls --service_type mon 
@@ -90,9 +73,46 @@ mon.master3              master3  running (20h)  2m ago     3d   15.2.8   docker
 
 ```
 
+6. 준비가 되어 있는 특정NODE에 데몬 실행 
+```bash
+#orch apply prometheus --placement="host1 host2 host3" #HOSTNAME 사용
+#orch apply prometheus --placement="label:mylabel"  #LABEL 사용
+#orch apply prometheus --placement='myhost[1-3]' #패턴 매칭
+#orch apply node-exporter --placement='*' 
+#orch apply prometheus --placement=3 #데몬수 지정
+#orch apply prometheus --placement="2 host1 host2 host3" #데몬수 지정
+
+#YAML (HostName)
+service_type: prometheus
+placement:
+  hosts:
+    - host1
+    - host2
+    - host3
+    
+#YAML 패턴패칭
+service_type: prometheus
+placement:
+  host_pattern: "myhost[1-3]"
+  
+#YAML Label 
+service_type: prometheus
+placement:
+  label: "mylabel"
+
+#YAML HOST 패턴(전체)
+service_type: node-exporter
+placement:
+  host_pattern: "*"
+  
+#YAML 개수 지정
+service_type: prometheus
+placement:
+  count: 3
+```
+
 ```diff
-- SPECIAL HOST LABELS (_no_schedule , _no_autotune_memory , _admin )를 이용하여 drain으로 관리방법  
-- 로그 관리방법
+- 로그 관리 방안 필요. 
 ```
 
 
