@@ -1,3 +1,9 @@
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+
 ## ADDING HOSTS  
 
 To add each new host to the cluster, perform two steps:  
@@ -62,5 +68,12 @@ addr: 192.168.0.12
 #ceph orch host ls [--format yaml]
 
 ```
-<font color='dodgerblue'> 예쁜 파랑 </font>
+
+```diff
+- SPECIAL HOST LABELS (_no_schedule , _no_autotune_memory , _admin )를 이용하여 drain으로 관리방법
+- 로그 관리방법
+
+```
+
+
 
