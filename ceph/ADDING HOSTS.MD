@@ -20,9 +20,47 @@ For example:
 
 For Label ADD
 #ceph orch host add host4 10.10.0.104 --labels master
+
+# YAML를 이용하여 일괄등록하는 방식
+
+# YAML 파일로 저장하고 ceph orch apply -i yaml명 을 이용하여 일괄저장할수 있다.
+service_type: host
+hostname: node-00
+addr: 192.168.0.10
+labels:
+- example1
+- example2
+---
+service_type: host
+hostname: node-01
+addr: 192.168.0.11
+labels:
+- grafana
+---
+service_type: host
+hostname: node-02
+addr: 192.168.0.12
+
 ```
 
+
 3. 호스트 제거
+
+```bash
+# 호스트는 클러스터에서 모든 데몬이 제거되면 클러스터에서 안전하게 제거하는 방식
+#ceph orch host drain *<host>*
+#ceph orch osd rm status (OSD 상태)
+#ceph orch ps <host> (완전삭제)
+
+# Off-Line 상태에서 강제 제거하는 방식
+#ceph orch host rm <host>  --force
+```
+
+4. 확인작업
+ceph orch host ls [--format yaml]
+
+6. 
+
 
 
 
