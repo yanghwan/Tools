@@ -48,9 +48,9 @@ For example:
 #ceph orch apply mon "host1,host2,host3" #일괄등록
 ```
 
-4. YAML를 이용하여 일괄등록하는 방식
-
-# YAML 파일로 저장하고 ceph orch apply -i yaml명 을 이용하여 일괄저장할수 있다.
+4. YAML를 이용하여 일괄등록하는 방식  
+```bash
+# YAML 파일로 저장하고 ceph orch apply -i yaml명 을 이용하여 일괄저장할수 있다.  
 service_type: mon
 placement:
   hosts:
