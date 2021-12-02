@@ -5,9 +5,44 @@
 # text in gray
 ```
 
-## OSD Device 
-CEPH Cluster의 OSD를 배포하기 위해서는, Device를 확인해야 되며 CLI 명령어를 이용해서  저장장치 인벤토리를 확인할수 있다.  
-#ceph orch device ls  
+## Pool, PG , CRUSH  구성
+풀을 생성하고 풀의 배치 그룹 수를 설정할 때 Ceph는 특별히 기본값을 재정의하지 않는 경우 기본값을 사용합니다.   
+특히 풀의 복제본 크기를 설정, 기본 배치 그룹 수를 재정의하는 것이 좋으며, 풀 명령을 실행할 때 이러한 값을 구체적으로 설정할 수 있습니다  
+CEPH Pool >> PG 설정 >> CRUSH 설정
+
+
+#ceph Pool 
+```bash 
+# ceph osd lspools
+1 device_health_metrics
+2 replicapool_hdd
+3 myfs-metadata
+4 myfs-data0-hdd
+
+# ceph osd pool stats
+pool device_health_metrics id 1
+  nothing is going on
+pool replicapool_hdd id 2
+  nothing is going on
+pool myfs-metadata id 3
+  nothing is going on
+pool myfs-data0-hdd id 4
+  nothing is going on
+
+# ceph osd pool ls  detail
+pool 1 'device_health_metrics' replicated size 3 min_size 2 crush_rule 1 object_hash rjenkins pg_num 1 pgp_num 1 autoscale_mode on last_change 1734 flags hashpspool stripe_width 0 pg_num_min 1 application mgr_devicehealth
+pool 2 'replicapool_hdd' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1360 lfor 0/1360/1358 flags hashpspool,selfmanaged_snaps stripe_width 0 application rbd
+pool 3 'myfs-metadata' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1506 flags hashpspool stripe_width 0 pg_autoscale_bias 4 pg_num_min 16 recovery_priority 5 application cephfs
+pool 4 'myfs-data0-hdd' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1547 lfor 0/1547/1545 flags hashpspool stripe_width 0 application cephfs
+
+# ceph osd pool autoscale-status
+POOL                     SIZE  TARGET SIZE  RATE  RAW CAPACITY   RATIO  TARGET RATIO  EFFECTIVE RATIO  BIAS  PG_NUM  NEW PG_NUM  AUTOSCALE  
+device_health_metrics  121.9k                3.0        22356G  0.0000                                  1.0       1              on         
+replicapool_hdd           19                 2.0        22356G  0.0000                                  1.0      32              off        
+myfs-metadata          37037                 2.0        22356G  0.0000                                  4.0      32              off        
+myfs-data0-hdd             0                 2.0        22356G  0.0000                                  1.0      32              off 
+
+```
 
 - 사용가능한 저장장치  
 The device must have no partitions. 
