@@ -44,7 +44,8 @@ myfs-data0-hdd             0                 2.0        22356G  0.0000          
 
 ```
 
-- 사용가능한 저장장치  
+- Pool 생성
+ 
 The device must have no partitions. 
 The device must not have any LVM state.  
 The device must not be mounted.  
