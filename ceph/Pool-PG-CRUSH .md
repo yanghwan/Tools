@@ -60,9 +60,36 @@ myfs-data0-hdd             0                 2.0        22356G  0.0000          
 # ceph osd pool create hdd_pool_1 #추가 파라메터를 넣지 않으면 Default Setting
 pool 'hdd_pool_1' created
 
+```
+
+** 2. Pool Delete
+```bash
+#ceph osd pool delete <pool-name> [<pool-name> --yes-i-really-really-mean-it]
+- 
+# mon_allow_pool_delete 옵션에 대해 true 설정 필요, 
+플래그를 true로 설정
+#ceph auth ls | grep -C 5 {pool-name}
+#ceph auth del {user}
+
+
+그렇지 않으면 수영장 제거를 거부합니다.
+
+자세한 내용은 모니터 구성 을 참조하십시오.
+
+생성한 풀에 대해 고유한 규칙을 생성한 경우 더 이상 풀이 필요하지 않을 때 규칙을 제거하는 것을 고려해야 합니다.
+
+ceph osd pool get {pool-name} crush_rule
+예를 들어 규칙이 "123"인 경우 다음 과 같이 다른 풀을 확인할 수 있습니다 .
+
+ceph osd dump | grep "^pool" | grep "crush_rule 123"
+다른 풀이 해당 사용자 지정 규칙을 사용 하지 않는 경우 클러스터에서 해당 규칙을 삭제하는 것이 안전합니다.
+
+더 이상 존재하지 않는 풀에 대해 엄격하게 권한이 있는 사용자를 생성한 경우 해당 사용자도 삭제하는 것을 고려해야 합니다.
+
 
 
 ```
+
 ** 3. Default value
 ```bash
 # ceph osd erasure-code-profile get default
