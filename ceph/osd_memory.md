@@ -11,12 +11,11 @@ Ceph Client는 데이터를 Pool에 저장을 하며,  Pool의 PG 및 Crush 구�
 풀을 생성하고 풀의 배치 그룹 수를 설정할 때 Ceph는 특별히 기본값을 재정의하지 않는 경우 기본값을 사용합니다.   
 특히 풀의 복제본 크기를 설정, 기본 배치 그룹 수를 재정의하는 것이 좋으며, 풀 명령을 실행할 때 이러한 값을 구체적으로 설정할 수 있습니다  
 
-일반적으로 설정작업은   
-1. CEPH Pool >> 2. PG 설정 >> 3. CRUSH 설정 으로 진행  
+* 일반적으로 설정작업은   
+1. CEPH Pool >> 2. PG   >> 3. CRUSH   으로 진행  
 
 * Pool 기능  
-- Resilience / Placement Groups: / CRUSH Rules  Snapshots / Quotas  
-
+Resilience (replicas ,erasure code profile)  , / Placement Groups(OSD당 PG Group 개수)  / CRUSH Rules /   Snapshots / Quotas  (Pool 최대개수)
 
 #ceph Pool Information
 ```bash 
@@ -51,7 +50,7 @@ myfs-data0-hdd             0                 2.0        22356G  0.0000          
 
 ```
 
-- Pool 생성
+** 1. Pool Create
  
 The device must have no partitions. 
 The device must not have any LVM state.  
