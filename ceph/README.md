@@ -39,9 +39,53 @@ Ceph를 설치하는 방법에는 여러 가지가 방법을 지원하지만, Ce
 #cephadm bootstrap --mon-ip *<mon-ip>*
 ```
 
+* Ceph Status Check
+```bash
+# 전체적인 Ceph Health Check
+# ceph -s
+  cluster:
+    id:     19ee1242-4c50-11ec-8dc3-6cae8b5ee7d0
+    health: HEALTH_OK
+ 
+  services:
+    mon: 3 daemons, quorum master1,master2,master3 (age 3d)
+    mgr: master1.laqvhu(active, since 2d)
+    mds: myfs:1 {0=myfs.master3.yvcqtz=up:active} 1 up:standby
+    osd: 6 osds: 6 up (since 2d), 6 in (since 2d)
+ 
+  data:
+    pools:   4 pools, 97 pgs
+    objects: 32 objects, 11 KiB
+    usage:   6.4 GiB used, 22 TiB / 22 TiB avail
+    pgs:     97 active+clean
+ 
+# Cluster 가용용량
+[root@master1 ~]# ceph df
+--- RAW STORAGE ---
+CLASS  SIZE    AVAIL   USED     RAW USED  %RAW USED
+hdd    22 TiB  22 TiB  413 MiB   6.4 GiB       0.03
+TOTAL  22 TiB  22 TiB  413 MiB   6.4 GiB       0.03
+ 
+--- POOLS ---
+POOL                   ID  PGS  STORED   OBJECTS  USED     %USED  MAX AVAIL
+device_health_metrics   1    1  122 KiB        9  366 KiB      0    6.9 TiB
+replicapool_hdd         2   32     19 B        1  128 KiB      0     10 TiB
+myfs-metadata           3   32   36 KiB       22  1.0 MiB      0     10 TiB
+myfs-data0-hdd          4   32      0 B        0      0 B      0     10 TiB
 
-
-
+# OSD 정보
+[root@master1 ~]# ceph osd df
+ID  CLASS  WEIGHT   REWEIGHT  SIZE     RAW USE  DATA     OMAP     META      AVAIL    %USE  VAR   PGS  STATUS
+ 2    hdd  3.63869   1.00000  3.6 TiB  1.1 GiB   69 MiB  200 KiB  1024 MiB  3.6 TiB  0.03  1.00   45      up
+ 0    hdd  3.63869   1.00000  3.6 TiB  1.1 GiB   69 MiB  203 KiB  1024 MiB  3.6 TiB  0.03  1.00   39      up
+ 1    hdd  3.63869   1.00000  3.6 TiB  1.1 GiB   68 MiB   12 KiB  1024 MiB  3.6 TiB  0.03  1.00   33      up
+ 3    hdd  3.63869   1.00000  3.6 TiB  1.1 GiB   69 MiB      0 B     1 GiB  3.6 TiB  0.03  1.00   35      up
+ 4    hdd  3.63869   1.00000  3.6 TiB  1.1 GiB   69 MiB      0 B     1 GiB  3.6 TiB  0.03  1.00   22      up
+ 5    hdd  3.63869   1.00000  3.6 TiB  1.1 GiB   69 MiB      0 B     1 GiB  3.6 TiB  0.03  1.00   21      up
+                       TOTAL   22 TiB  6.4 GiB  413 MiB  416 KiB   6.0 GiB   22 TiB  0.03                   
+MIN/MAX VAR: 1.00/1.00  STDDEV: 0
+[root@master1 ~]# 
+```
 
 ##	CEPH  구축하기  
 ### DISK 초기화
