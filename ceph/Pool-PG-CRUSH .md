@@ -51,7 +51,49 @@ myfs-data0-hdd             0                 2.0        22356G  0.0000          
 ```
 
 ** 1. Pool Create
- 
+```bash
+
+#ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]] [replicated] [crush-rule-name] [expected-num-objects]
+#ceph osd pool create {pool-name} [{pg-num} [{pgp-num}]]   erasure [erasure-code-profile] [crush-rule-name] [expected_num_objects] [--autoscale-mode=<on,off,warn>]
+
+# For Example
+# ceph osd pool create hdd_pool_1 #추가 파라메터를 넣지 않으면 Default Setting
+pool 'hdd_pool_1' created
+
+
+
+```
+** 3. Default value
+```bash
+# ceph osd erasure-code-profile get default
+k=2
+m=2
+plugin=jerasure
+technique=reed_sol_van
+
+```
+** 4. 모니터링
+```bash
+[root@master1 ~]# rados df
+POOL_NAME                 USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED  RD_OPS       RD  WR_OPS       WR  USED COMPR  UNDER COMPR
+device_health_metrics  366 KiB        9       0      27                   0        0         0      74   74 KiB      84  390 KiB         0 B          0 B
+hdd_pool_1                 0 B        0       0       0                   0        0         0       0      0 B       0      0 B         0 B          0 B
+myfs-data0-hdd             0 B        0       0       0                   0        0         0       0      0 B       0      0 B         0 B          0 B
+myfs-metadata          1.0 MiB       22       0      44                   0        0         0     125  141 KiB     116   78 KiB         0 B          0 B
+replicapool_hdd        128 KiB        1       0       2                   0        0         0       0      0 B       2    2 KiB         0 B          0 B
+
+total_objects    32
+total_used       6.4 GiB
+total_avail      22 TiB
+total_space      22 TiB
+
+# ceph osd pool ls detail
+pool 2 'replicapool_hdd' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1360 lfor 0/1360/1358 flags hashpspool,selfmanaged_snaps stripe_width 0 application rbd
+pool 3 'myfs-metadata' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1506 flags hashpspool stripe_width 0 pg_autoscale_bias 4 pg_num_min 16 recovery_priority 5 application cephfs
+pool 4 'myfs-data0-hdd' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1547 lfor 0/1547/1545 flags hashpspool stripe_width 0 application cephfs
+pool 5 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode on last_change 1802 flags hashpspool stripe_width 0
+
+```
 The device must have no partitions. 
 The device must not have any LVM state.  
 The device must not be mounted.  
