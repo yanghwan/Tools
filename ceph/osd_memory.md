@@ -5,13 +5,17 @@
 # text in gray
 ```
 
-## Pool, PG , CRUSH  구성
+## Pool, PG , CRUSH  구성  
+Ceph Client는 데이터를 Pool에 저장을 하며,  Pool의 PG 및 Crush 구성에 따라서 OSD에 데이터를 저장을 하게 된다.  
+데이터를 저장하기 위한 논리적인 파티션인 Pool이라는 개념으로 지원을 하고 있으며, 클라이언트가 데이터를 저장할 I/O 인터페이스를 생성하여 제공합니다.  
 풀을 생성하고 풀의 배치 그룹 수를 설정할 때 Ceph는 특별히 기본값을 재정의하지 않는 경우 기본값을 사용합니다.   
 특히 풀의 복제본 크기를 설정, 기본 배치 그룹 수를 재정의하는 것이 좋으며, 풀 명령을 실행할 때 이러한 값을 구체적으로 설정할 수 있습니다  
-CEPH Pool >> PG 설정 >> CRUSH 설정
+
+일반적으로 설정작업은   
+1. CEPH Pool >> 2. PG 설정 >> 3. CRUSH 설정 으로 진행  
 
 
-#ceph Pool 
+#ceph Pool Information
 ```bash 
 # ceph osd lspools
 1 device_health_metrics
