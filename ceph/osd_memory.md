@@ -14,8 +14,8 @@ Ceph Client는 데이터를 Pool에 저장을 하며,  Pool의 PG 및 Crush 구�
 일반적으로 설정작업은   
 1. CEPH Pool >> 2. PG 설정 >> 3. CRUSH 설정 으로 진행  
 
-* Pool 기능
-Resilience / Placement Groups: / CRUSH Rules  Snapshots / Quotas  
+* Pool 기능  
+- Resilience / Placement Groups: / CRUSH Rules  Snapshots / Quotas  
 
 
 #ceph Pool Information
