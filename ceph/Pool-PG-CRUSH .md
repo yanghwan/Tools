@@ -70,8 +70,8 @@ k=2
 m=2
 plugin=jerasure
 technique=reed_sol_van
-
 ```
+
 ** 4. 모니터링
 ```bash
 [root@master1 ~]# rados df
