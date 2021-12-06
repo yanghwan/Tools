@@ -66,17 +66,14 @@ pool 'hdd_pool_1' created
 ```bash
 #ceph osd pool delete <pool-name> [<pool-name> --yes-i-really-really-mean-it]
 - 
-# mon_allow_pool_delete 옵션에 대해 true 설정 필요, 
-플래그를 true로 설정
+# mon_allow_pool_delete 옵션에 대해 true 설정
+#ceph tell mon.\* injectargs '--mon-allow-pool-delete=false' #변경
 #ceph auth ls | grep -C 5 {pool-name}
 #ceph auth del {user}
 
 
-그렇지 않으면 수영장 제거를 거부합니다.
+```bash 
 
-자세한 내용은 모니터 구성 을 참조하십시오.
-
-생성한 풀에 대해 고유한 규칙을 생성한 경우 더 이상 풀이 필요하지 않을 때 규칙을 제거하는 것을 고려해야 합니다.
 
 ceph osd pool get {pool-name} crush_rule
 예를 들어 규칙이 "123"인 경우 다음 과 같이 다른 풀을 확인할 수 있습니다 .
@@ -119,6 +116,11 @@ pool 2 'replicapool_hdd' replicated size 2 min_size 1 crush_rule 1 object_hash r
 pool 3 'myfs-metadata' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1506 flags hashpspool stripe_width 0 pg_autoscale_bias 4 pg_num_min 16 recovery_priority 5 application cephfs
 pool 4 'myfs-data0-hdd' replicated size 2 min_size 1 crush_rule 1 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode off last_change 1547 lfor 0/1547/1545 flags hashpspool stripe_width 0 application cephfs
 pool 5 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode on last_change 1802 flags hashpspool stripe_width 0
+
+#ceph osd pool get {pool-name} crush_rule  #pool의 crush_rule 확인 
+[root@master1 ~]# ceph osd pool get hdd_pool_1 crush_rule
+crush_rule: replicated_rule
+
 
 ```
 The device must have no partitions. 
