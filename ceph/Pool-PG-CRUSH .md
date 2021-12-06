@@ -72,9 +72,51 @@ pool 'hdd_pool_1' created
 #ceph auth del {user}
 ```
 
+* 3. Applcation Enabled / Disable (pool information setting)
+cephfs for the Ceph Filesystem. / rbd for the Ceph Block Device / rgw for the Ceph Object Gateway 사용용도에 맞춰서 설정 필요  
+```bash
+#ceph health detail -f json-pretty 
+#ceph osd pool application enable <poolname> <app> {--yes-i-really-mean-it}
+#app는 cephfs / rbd / rgw 용도에 맞춰서 설정.
+
+#Disable Application
+# ceph osd pool application disable <poolname> <app> {--yes-i-really-mean-it}
 
 
-* 3. Default value
+For Examples
+[root@master1 ~]# ceph osd pool ls detail | grep hdd_pool_1
+pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode on last_change 1827 flags hashpspool stripe_width 0
+
+# ceph osd pool application enable hdd_pool_1 cephfs --yes-i-really-mean-it
+enabled application 'cephfs' on pool 'hdd_pool_1'
+
+# ceph osd pool ls detail | grep hdd_pool_1
+pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode on last_change 1832 flags hashpspool stripe_width 0 application cephfs
+
+# ceph osd pool application disable hdd_pool_1 cephfs --yes-i-really-mean-it
+disable application 'cephfs' on pool 'hdd_pool_1'
+# ceph osd pool ls detail | grep hdd_pool_1
+pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 32 pgp_num 32 autoscale_mode on last_change 1834 flags hashpspool stripe_width 0
+
+```
+* 4. pool replicas setting 
+```bash
+#ceph osd pool set <poolname> size <num-replicas>
+# ceph osd dump | grep 'replicated size'
+```
+
+* 5. pool value get / set
+```bash
+#ceph osd pool set {pool-name} {key} {value}
+#ceph osd pool get {pool-name} {key}
+
+For Examples
+# ceph osd pool set hdd_pool_1 pg_num 64
+set pool 6 pg_num to 64
+# ceph osd pool get hdd_pool_1 pg_num
+```
+
+* 5. Default value
 ```bash
 # ceph osd erasure-code-profile get default
 k=2
@@ -83,7 +125,7 @@ plugin=jerasure
 technique=reed_sol_van
 ```
 
-* 4. 모니터링
+* 6. Information
 ```bash
 [root@master1 ~]# rados df
 POOL_NAME                 USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED  RD_OPS       RD  WR_OPS       WR  USED COMPR  UNDER COMPR
@@ -107,6 +149,4 @@ pool 5 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenki
 #ceph osd pool get {pool-name} crush_rule  #pool의 crush_rule 확인 
 [root@master1 ~]# ceph osd pool get hdd_pool_1 crush_rule
 crush_rule: replicated_rule
-
-
 ```
