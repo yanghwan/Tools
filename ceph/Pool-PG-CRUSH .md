@@ -153,3 +153,42 @@ crush_rule: replicated_rule
 ```  
 
 # PG
+Placement Group은 Ceph Client와 Ceph OSD Daemon간 loose coupling하는 역할을 합니다. 이는 Ceph OSD Daemon이 동적으로 추가/삭제 되더라도 rebalance를 동적으로 할 수 있도록 해줍니다.
+```bash
+# PG를 설정시 autoscale_mode를 Off로 설정을 해야 재조정이 되지 않는다.
+# ceph osd pool set hdd_pool_1 pg_autoscale_mode off
+
+
+               (OSD * 100)
+   총 PG = ------------
+               replicas 수
+# OSD당 50 ~ 100 사이로 설정하며, rounded up to the nearest power of two (2의 배수로 설정)
+#For Examples
+# ceph osd tree
+ID  CLASS  WEIGHT    TYPE NAME         STATUS  REWEIGHT  PRI-AFF
+-1         21.83212  root default                               
+-5          3.63869      host master1                           
+ 2    hdd   3.63869          osd.2         up   1.00000  1.00000
+-3          7.27737      host master2                           
+ 0    hdd   3.63869          osd.0         up   1.00000  1.00000
+ 1    hdd   3.63869          osd.1         up   1.00000  1.00000
+-7         10.91606      host master3                           
+ 3    hdd   3.63869          osd.3         up   1.00000  1.00000
+ 4    hdd   3.63869          osd.4         up   1.00000  1.00000
+ 5    hdd   3.63869          osd.5         up   1.00000  1.00000
+
+                 (OSD(6) * 100)  
+   총 PG(256)  = ------------
+                 replicas 수 (3)   
+[root@master1 ~]# ceph osd pool set hdd_pool_1 pg_num 256
+set pool 6 pg_num to 256
+[root@master1 ~]# ceph osd pool set hdd_pool_1 pgp_num 256
+set pool 6 pgp_num to 256
+
+[root@master1 ~]# ceph osd  pool ls detail | grep hdd_pool_1
+pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 256 pgp_num 256 autoscale_mode off last_change 2375 lfor 0/2371/2373 flags hashpspool stripe_width 0 application cephfs
+
+```bash
+
+
+
