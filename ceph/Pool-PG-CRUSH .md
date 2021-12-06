@@ -180,15 +180,15 @@ ID  CLASS  WEIGHT    TYPE NAME         STATUS  REWEIGHT  PRI-AFF
                  (OSD(6) * 100)  
    총 PG(256)  = ------------
                  replicas 수 (3)   
-[root@master1 ~]# ceph osd pool set hdd_pool_1 pg_num 256
+# ceph osd pool set hdd_pool_1 pg_num 256
 set pool 6 pg_num to 256
-[root@master1 ~]# ceph osd pool set hdd_pool_1 pgp_num 256
+# ceph osd pool set hdd_pool_1 pgp_num 256
 set pool 6 pgp_num to 256
 
-[root@master1 ~]# ceph osd  pool ls detail | grep hdd_pool_1
+# ceph osd  pool ls detail | grep hdd_pool_1
 pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenkins pg_num 256 pgp_num 256 autoscale_mode off last_change 2375 lfor 0/2371/2373 flags hashpspool stripe_width 0 application cephfs
+```
 
-```bash
-
+# CRUSH
 
 
