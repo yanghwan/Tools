@@ -14,10 +14,11 @@ Ceph Client는 데이터를 Pool에 저장을 하며,  Pool의 PG 및 Crush 구�
 * 일반적으로 설정작업은   
 1. CEPH Pool >> 2. PG   >> 3. CRUSH   으로 진행  
 
+# Pool
 * Pool 기능  
 Resilience (replicas ,erasure code profile)  , / Placement Groups(OSD당 PG Group 개수)  / CRUSH Rules /   Snapshots / Quotas  (Pool 최대개수)
 
-ceph Pool Information
+- ceph Pool Information
 ```bash 
 # ceph osd lspools
 1 device_health_metrics
@@ -149,4 +150,6 @@ pool 5 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenki
 #ceph osd pool get {pool-name} crush_rule  #pool의 crush_rule 확인 
 [root@master1 ~]# ceph osd pool get hdd_pool_1 crush_rule
 crush_rule: replicated_rule
-```
+```  
+
+# PG
