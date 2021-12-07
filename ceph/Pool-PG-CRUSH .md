@@ -190,5 +190,10 @@ pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenki
 ```
 
 # CRUSH
+- an algorithm that can look up the physical location of data in Ceph, given the object name as input
+- Object 이름이 주어졌을때, 물리적인 데이터 위치를 찾을수 잇는 알고리즘 
 
+```bash
+
+```
 
