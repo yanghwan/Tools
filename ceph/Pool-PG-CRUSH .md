@@ -254,3 +254,59 @@ hdd
     }
 ]
 ```
+
+* 2. Rule/bucket  Create /move
+```bash
+#ceph osd crush rule create_simple [ruleset이름] [root] [bucket-type] [firstn|indep]
+#ceph osd crush add-bucket [bucket 이름] [bucket 타입]
+#ceph osd crush move [bucket 이름] [bucket 타입]=[bucket 이름] 
+
+For Examples
+#ceph osd crush rule create-simple hdd_rule default host firstn
+#ceph osd crush add-bucket hdd_rule root
+#ceph osd crush move osd.0 root=hdd_rule
+moved item id 0 name 'osd.0' to location {root=hdd_rule} in crush map
+#ceph osd crush move osd.5 root=hdd_rule
+moved item id 5 name 'osd.5' to location {root=hdd_rule} in crush map
+
+# ceph osd crush rule ls
+hdd_rule
+
+# ceph osd crush add-bucket hdd_rule root
+added bucket hdd_rule type root to crush map
+
+# ceph osd tree
+ID  CLASS  WEIGHT    TYPE NAME         STATUS  REWEIGHT  PRI-AFF
+-9                0  root hdd_rule                              
+-1         21.83212  root default                               
+-5          3.63869      host master1                           
+ 2    hdd   3.63869          osd.2         up   1.00000  1.00000
+-3          7.27737      host master2                           
+ 0    hdd   3.63869          osd.0         up   1.00000  1.00000
+ 1    hdd   3.63869          osd.1         up   1.00000  1.00000
+-7         10.91606      host master3                           
+ 3    hdd   3.63869          osd.3         up   1.00000  1.00000
+ 4    hdd   3.63869          osd.4         up   1.00000  1.00000
+ 5    hdd   3.63869          osd.5         up   1.00000  1.00000
+
+#  ceph osd crush move osd.0 root=hdd_rule
+moved item id 0 name 'osd.0' to location {root=hdd_rule} in crush map
+
+#  ceph osd crush move osd.5 root=hdd_rule
+moved item id 5 name 'osd.5' to location {root=hdd_rule} in crush map
+
+# ceph osd tree
+ID  CLASS  WEIGHT    TYPE NAME         STATUS  REWEIGHT  PRI-AFF
+-9          7.27737  root hdd_rule                              
+ 0    hdd   3.63869      osd.0             up   1.00000  1.00000
+ 5    hdd   3.63869      osd.5             up   1.00000  1.00000
+-1         14.55475  root default                               
+-5          3.63869      host master1                           
+ 2    hdd   3.63869          osd.2         up   1.00000  1.00000
+-3          3.63869      host master2                           
+ 1    hdd   3.63869          osd.1         up   1.00000  1.00000
+-7          7.27737      host master3                           
+ 3    hdd   3.63869          osd.3         up   1.00000  1.00000
+ 4    hdd   3.63869          osd.4         up   1.00000  1.00000
+ 
+```
