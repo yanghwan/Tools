@@ -268,6 +268,7 @@ For Examples
 moved item id 0 name 'osd.0' to location {root=hdd_rule} in crush map
 #ceph osd crush move osd.5 root=hdd_rule
 moved item id 5 name 'osd.5' to location {root=hdd_rule} in crush map
+#ceph osd crush move ssd root=default  # hdd_rule bucket을 default bucket에 모두 추가할수 있다.
 
 # ceph osd crush rule ls
 hdd_rule
@@ -309,4 +310,19 @@ ID  CLASS  WEIGHT    TYPE NAME         STATUS  REWEIGHT  PRI-AFF
  3    hdd   3.63869          osd.3         up   1.00000  1.00000
  4    hdd   3.63869          osd.4         up   1.00000  1.00000
  
+#  ceph osd crush move hdd_rule root=default
+moved item id -9 name 'hdd_rule' to location {root=default} in crush map
+# ceph osd tree
+ID  CLASS  WEIGHT    TYPE NAME          STATUS  REWEIGHT  PRI-AFF
+-1         21.83212  root default                                
+-9          7.27737      root hdd_rule                           
+ 0    hdd   3.63869          osd.0          up   1.00000  1.00000
+ 5    hdd   3.63869          osd.5          up   1.00000  1.00000
+-5          3.63869      host master1                            
+ 2    hdd   3.63869          osd.2          up   1.00000  1.00000
+-3          3.63869      host master2                            
+ 1    hdd   3.63869          osd.1          up   1.00000  1.00000
+-7          7.27737      host master3                            
+ 3    hdd   3.63869          osd.3          up   1.00000  1.00000
+ 4    hdd   3.63869          osd.4          up   1.00000  1.00000
 ```
