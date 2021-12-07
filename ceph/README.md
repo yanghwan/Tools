@@ -87,8 +87,8 @@ MIN/MAX VAR: 1.00/1.00  STDDEV: 0
 [root@master1 ~]# 
 ```
 
-##	CEPH  구축하기  
-### DISK 초기화
+
+### 설치전 DISK 초기화
 
 ```bash
 # disk는 /dev/sdb  Device name으로 fdisk로 확인
