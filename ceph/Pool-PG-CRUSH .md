@@ -191,9 +191,66 @@ pool 6 'hdd_pool_1' replicated size 3 min_size 2 crush_rule 0 object_hash rjenki
 
 # CRUSH
 - an algorithm that can look up the physical location of data in Ceph, given the object name as input
-- Object 이름이 주어졌을때, 물리적인 데이터 위치를 찾을수 잇는 알고리즘 
+- Object 이름이 주어졌을때, 물리적인 데이터 위치를 찾을수 잇는 알고리즘이며 , 데이터가 계층 구조를 기반으로 물리적인 장치에 분산되는 방식에 대한 정책을 정의한다.
 
+* 1. crush rule 확인
 ```bash
+#ceph osd crush rule ls
+#ceph osd crush rule dump
 
+
+For Examples
+[root@master1 ~]# ceph osd crush rule ls
+replicated_rule
+hdd
+[root@master1 ~]# 
+[root@master1 ~]# ceph osd crush rule dump
+[
+    {
+        "rule_id": 0,
+        "rule_name": "replicated_rule",
+        "ruleset": 0,
+        "type": 1,
+        "min_size": 1,
+        "max_size": 10,
+        "steps": [
+            {
+                "op": "take",
+                "item": -1,
+                "item_name": "default"
+            },
+            {
+                "op": "chooseleaf_firstn",
+                "num": 0,
+                "type": "host"
+            },
+            {
+                "op": "emit"
+            }
+        ]
+    },
+    {
+        "rule_id": 1,
+        "rule_name": "hdd",
+        "ruleset": 1,
+        "type": 1,
+        "min_size": 1,
+        "max_size": 10,
+        "steps": [
+            {
+                "op": "take",
+                "item": -2,
+                "item_name": "default~hdd"
+            },
+            {
+                "op": "chooseleaf_firstn",
+                "num": 0,
+                "type": "host"
+            },
+            {
+                "op": "emit"
+            }
+        ]
+    }
+]
 ```
-
