@@ -19,8 +19,7 @@
   $ openssl genrsa -aes256 -out tls.key 2048
   
   ```
- kubectl create secret tls -n yanghwankim secret_ingress-tls --cert tls.crt --key tls.key
- 
+  
 - CSR (인증서명요청. Certificate Signing Request)
 ```bash
 # 개인키를 입력하여 CSR 생성하기
