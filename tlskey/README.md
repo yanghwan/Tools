@@ -55,79 +55,34 @@ Please enter the following 'extra' attributes
 to be sent with your certificate request
 A challenge password []:ingress
 An optional company name []:test.ingress.co.kr  
-
-
 ```
 
 - 인증서를 만든
-
-To add each new host to the cluster, perform two steps:  
-1. one step (public SSH key Copy)  
 ```bash
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@*<new-host>*
+#CSR을 명시적으로 넣어 인증서를 만드는 방법
+#openssl  x509  -req  -days <유효날수>  -in <인증사인요청파일>  -signkey <개인키>  -out <인증서 파일명>
 
-For example:
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@host2
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@host3
-```
-2. 신규 Node 추가
+$ openssl  x509  -req  -days 365  -in cert.csr  -signkey cert.key  -out cert.crt
+Signature ok
+subject=C = AU, ST = test.ingress.co.kr, L = test.ingress.co.kr, O = test.ingress.co.kr, OU = test.ingress.co.kr, CN = test.ingress.co.kr, emailAddress = test.ingress.co.kr
+Getting Private key
+Enter pass phrase for cert.key:
+$ ls
+bin  boot  cert.crt  cert.csr  cert.key  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 
-```bash
-#ceph orch host add *<newhost>* [*<ip>*] [*<label1> ...*]
 
-For example:
-#ceph orch host add host2 10.10.0.102
-#ceph orch host add host3 10.10.0.103
-
-For Label ADD
-#ceph orch host add host4 10.10.0.104 --labels master
-
-# YAML를 이용하여 일괄등록하는 방식
-
-# YAML 파일로 저장하고 ceph orch apply -i yaml명 을 이용하여 일괄저장할수 있다.
-service_type: host
-hostname: node-00
-addr: 192.168.0.10
-labels:
-- example1
-- example2
----
-service_type: host
-hostname: node-01
-addr: 192.168.0.11
-labels:
-- grafana
----
-service_type: host
-hostname: node-02
-addr: 192.168.0.12
+CSR을 넣지 않고 (암묵적으로 CSR을 생성/이용하여) 인증서를 만드는 방법
+openssl req  -new  -x509  -days <유효날수>  -key <개인키>  -out <인증서파일명>
+$openssl  req  -new  -x509  -days 365  -key cert.key  -out  cert.crt
 
 ```
 
-
-3. 호스트 제거
+### K8S TLS Key 생성하기.
 
 ```bash
-# 호스트는 클러스터에서 모든 데몬이 제거되면 클러스터에서 안전하게 제거하는 방식
-#ceph orch host drain *<host>*
-#ceph orch osd rm status (OSD 상태)
-#ceph orch ps <host> (완전삭제)
-
-# Off-Line 상태에서 강제 제거하는 방식
-#ceph orch host rm <host>  --force
-```
-
-4. 확인작업
-```bash
-# 등록된 Host에 대해서 확인가능
-#ceph orch host ls [--format yaml]
+-signkey cert.key  -out cert.crt
+kubectl create secret tls -n yanghwankim secret_ingress-tls --cert cert.key --key cert.crt
 
 ```
-
-```diff
-- SPECIAL HOST LABELS (_no_schedule , _no_autotune_memory , _admin )를 이용하여 drain으로 관리방법  
-- 로그 관리방법
-```
-
 
 
