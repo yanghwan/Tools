@@ -413,3 +413,29 @@ resource "aws_nat_gateway" "private_nat" {
 }
 ```
 
+## shell_install_nginx.sh
+```bash
+#! /bin/bash
+
+echo "instance_ipaddress = ${instance_ipaddress}" > /tmp/iplist
+echo "instance_hostname = ${instance_hostname}" >> /tmp/iplist
+echo "all_host_info = ${all_host_info}" >> /tmp/iplist
+echo "nfs_address = ${nfs_address}" >> /tmp/iplist
+
+echo "-----BEGIN RSA PRIVATE KEY-----
+" > /tmp/ssh_key
+#sudo yum -y install epel-release redhat-lsb
+
+#sudo apt-get -y update
+sudo yum -y install nginx
+sudo yum -y net-tools
+sudo service nginx start
+sudo yum -y install nfs-utils
+sudo mkdir /source
+sudo mount -t nfs4 ${nfs_address}:/ /source
+sudo chown centos:centos /tmp/ssh_key
+sudo chmod 400 /tmp/ssh_key
+sudo mkdir /root/.ssh
+sudo cp /home/centos/.ssh/authorized_keys /root/.ssh/authorized_keys
+sudo systemctl restart sshd
+```
