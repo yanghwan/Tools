@@ -35,6 +35,47 @@ repo id                                                repo name                
 repolist: 10,854
 ```
 
+### REPO 구조
+``` base
+# cat localrepo.repo
+[localrepo]
+name=localrepo
+baseurl=file:///tmp/localrepo/
+enabled=1
+gpgcheck=0
+
+[root@bscloudisp yum.repos.d]# tree -df /tmp/localrepo
+/tmp/localrepo
+├── /tmp/localrepo/common
+│   └── /tmp/localrepo/common/createrepo
+└── /tmp/localrepo/repodata
+3 directories
+
+repodata Directory에는  메타데이터가 생성이 되며, 다른 파일의 체크섬이나 gpg서명등과 같이 관련된 파일이 저장이 되어 구성이 된다. 
+common Directory에는 Local Repo에서 사용하고자 하는 패키지들을 저장하여 사용할수 있도록 구성를 ㅎ한다.
+
+# repodata의 대표적인 구성 파일
+repomd.xml     : 기본적으로 아래에 나열된 다른 XML 메타 데이터 파일의 위치, 체크섬 및 타임 스탬프가 포함 된 인덱스다.
+repomd.xml.asc : 이 파일은 위의 예와 같이 저장소 작성자가 GPG를 사용하여 repomd.xml 파일에 서명 한 경우에만 생성된다.
+                 yum사용자가 pygpgme패키지를 설치 한 경우이 서명을 다운로드하여 확인합니다 .
+primary.xml.gz : 리포지토리의 각 패키지에 대한 자세한 정보가 들어 있습니다. 이름, 버전, 라이센스, 종속성 정보, 타임 스탬프, 크기 등과 같은 정보를 찾을 수 있습니다.
+filelists.xml.gz : 저장소의 각 패키지에있는 모든 파일 및 디렉토리에 대한 정보가 들어 있습니다.
+other.xml.gz :리포지토리의 각 패키지에 대한 RPM SPEC 파일에있는 변경 로그 항목이 포함되어 있습니다.
+
+[root@bscloudisp yum.repos.d]# tree -l /tmp/localrepo/repodata
+/tmp/localrepo/repodata
+├── 098d8aeee3f0abd348f07482b219a3fb62996d92fb8f49fd1f5bf0976ef6de44-other.sqlite.bz2
+├── 47a5bdd0581061277a3bf50176ccc4e1c77ae830a0f8203adf7ad1308194544f-other.xml.gz
+├── 4a4344e2233345893844be0bff2df57c48091410d056ea8c21ab33e4474b95fa-primary.xml.gz
+├── 59625b3f9ce73791a87e2132f925a86ef341ce30539cec4936a0f0331dd55aa9-primary.sqlite.bz2
+├── 7c4a272c3b5a458bdae8cc92338e9e5efad2a1368cc14d77fdb803d8070d489f-filelists.xml.gz
+├── 8ae7159aaca913b8e53a1145f3ae49be22e2e65af650330bf0e4bfe186f69a17-filelists.sqlite.bz2
+└── repomd.xml
+
+0 directories, 7 files
+
+```
+
 ### 명령어
 ```bash
 #sudo dnf info <pkg_name>  ## <pkg_name> : 패키지의 이름으로 설치가능 여부를 확인할수 있습니다.
