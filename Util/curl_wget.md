@@ -43,7 +43,7 @@ $ wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentatio
 ```
 
 
-## curl DATA 가져오기
+## curl data 가져오기
 윈도우와 리눅스에 기본 설치되고 있는 웹 개발 툴로써 http, https, ftp, sftps, smtp, telnet 등의 다양한 프로토콜과 Proxy, Header, Cookie 등의 세부 옵션까지 쉽게 설정할 수 있습니다.  
 이러한 장점 때문에 Client를 코딩을 시작하기 전에 curl 명령어로 서버 동작을 먼저 확인함으로써 좀 더 빠르게 개발을 진행할 수 있습니다.  
 
