@@ -57,6 +57,13 @@ option 처리는 GNU getopt 를 사용하므로 하이픈 하나를 붙이는 sh
 # -o --output <file>  : write output to file
 # -k --insecure : https 사이트에 대해서 ssl certificate 검증없이 연결  #wget --no-check-certificate와 비슷한 역활을 수행  
 curl -k https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus-kubernetes.yml  --output aaa  
+ 
+#curl -X POST -H "Content-Type: application/json" "URL" -d "DATA"
+ 
+#예시 : 
+curl -X POST -H "Content-Type: application/json" "url" -d "{\"dto\":{\"doList\" :[{\"macAddr\":\"00:00:00:00:00:00\",\"ipv4Addr\":\"99.99.99.99\",\"hostType\":\"0\"}]}}"
+curl -X DELETE -H "Content-Type: application/json" "url/arp-host/00:00:00:00:00:00?ip=99.99.99.99&type=0&vlan=0"
+
 ```
 참조자료 :  https://www.lesstif.com/software-architect/curl-http-get-post-rest-api-14745703.html  
  
