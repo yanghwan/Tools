@@ -47,8 +47,17 @@ $ wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentatio
 윈도우와 리눅스에 기본 설치되고 있는 웹 개발 툴로써 http, https, ftp, sftps, smtp, telnet 등의 다양한 프로토콜과 Proxy, Header, Cookie 등의 세부 옵션까지 쉽게 설정할 수 있습니다.  
 이러한 장점 때문에 Client를 코딩을 시작하기 전에 curl 명령어로 서버 동작을 먼저 확인함으로써 좀 더 빠르게 개발을 진행할 수 있습니다.  
 
+curl [options...] <url> 형식으로 사용  
+option 처리는 GNU getopt 를 사용하므로 하이픈 하나를 붙이는 short 형식의 옵션과 하이픈 두개로 시작되는 long 형식의 options 이 있다.  
+ 
+ 
+ 
 ```bash
 # -o --output <file>  : write output to file
 # -k --insecure : https 사이트에 대해서 ssl certificate 검증없이 연결  #wget --no-check-certificate와 비슷한 역활을 수행  
-curl -k https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus-kubernetes.yml  --output aaa
+curl -k https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus-kubernetes.yml  --output aaa  
 ```
+참조자료 :  https://www.lesstif.com/software-architect/curl-http-get-post-rest-api-14745703.html  
+ 
+
+ 
