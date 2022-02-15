@@ -50,7 +50,8 @@ $ wget https://raw.githubusercontent.com/prometheus/prometheus/main/documentatio
 curl [options...] <url> 형식으로 사용  
 option 처리는 GNU getopt 를 사용하므로 하이픈 하나를 붙이는 short 형식의 옵션과 하이픈 두개로 시작되는 long 형식의 options 이 있다.  
  
- 
+ ![image](https://user-images.githubusercontent.com/39255123/154015212-79b8e45b-eec2-4382-98a0-99e8acc42b44.png)  
+
  
 ```bash
 # -o --output <file>  : write output to file
