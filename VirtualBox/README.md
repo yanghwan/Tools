@@ -2,7 +2,8 @@
 Windows PC환경에서 여래개의 VM을 생성하여 다양한 테스트가 가능하다.  
 기본 구성 및 네트웍에 대한 기본개념을 이해하고 구축을 하면 쉽고 빠르게 구축을 할수 있다.  
 
-![image](https://user-images.githubusercontent.com/39255123/155870608-f946a1b3-6b80-4b6b-9778-1c40f59c43a3.png)
+![image](https://user-images.githubusercontent.com/39255123/155880305-9d9b3dbb-a86f-4867-9f5d-58ee10d7915a.png)
+
 
 위의 기본적인 구성을 위해서는 아래와 같은 단계로 구성을 진행한다.  
 ![image](https://user-images.githubusercontent.com/39255123/155870665-96c42490-41f2-4bc6-bf17-33fb3e8fd31a.png)
@@ -62,11 +63,11 @@ Windows IP 구성
 - 고정 IP 설정   
 아래의 방법으로 동일한 방식으로 3ea의 VM에 IP를 설정하여 인터페이스를 재기동 한다.  
 ```bash
-[root@redhat84 ~]# cd /etc/sysconfig/network-scripts/
+[root@centos ~]# cd /etc/sysconfig/network-scripts/
 
-[root@redhat84 network-scripts]# ls
+[root@centos network-scripts]# ls
 ifcfg-enp0s3
-[root@redhat84 network-scripts]# cat ifcfg-enp0s3  # 변경
+[root@centos network-scripts]# cat ifcfg-enp0s3  # 변경
 TYPE=Ethernet
 PROXY_METHOD=none
 BROWSER_ONLY=no
@@ -89,19 +90,19 @@ DNS2=8.8.8.8
 PREFIX=24
 
 # 인터페이스명 (enp0s3) 재기동하여 적용  
-root@redhat84 network-scripts]# nmcli con up enp0s3
+root@centos network-scripts]# nmcli con up enp0s3
 연결이 성공적으로 활성화되었습니다 (D-버스 활성 경로: /org/freedesktop/NetworkManager/ActiveConnection/4)
 
 ```
 
 - 호스트명 변경
 ```bash
-[root@redhat84 network-scripts]# hostnamectl set-hostname redhat84-1
-[root@redhat84 network-scripts]# uname -a
-Linux redhat84-1 4.18.0-305.el8.x86_64 #1 SMP Thu Apr 29 08:54:30 EDT 2021 x86_64 x86_64 x86_64 GNU/Linux
+[root@ ]# hostnamectl set-hostname centos8-1
+[root@ ]# uname -a
+Linux centos8-1 4.18.0-305.el8.x86_64 #1 SMP Thu Apr 29 08:54:30 EDT 2021 x86_64 x86_64 x86_64 GNU/Linux
 
-[root@redhat84 network-scripts]# hostname
-redhat84-1
+[root@ ]# hostname
+centos8-1
 
 # 호스트이름을 변경후 서버를 재기동해야 정상적으로 적용이 된다.
 ```
@@ -112,9 +113,9 @@ redhat84-1
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-192.168.137.101 redhat84-1
-192.168.137.102 redhat84-2
-192.168.137.103 redhat84-3
+192.168.137.101 centos8-1
+192.168.137.102 centos8-2
+192.168.137.103 centos8-3
 ```
 
 
@@ -122,7 +123,7 @@ redhat84-1
 ## 5. HOST 및 VM Test  
 ```bash
 # CLI 방식으로 IP 확인
-[root@redhat84 network-scripts]# ifconfig
+[root@]# ifconfig
 enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 192.168.137.101  netmask 255.255.255.0  broadcast 192.168.137.255
         inet6 fe80::a00:27ff:fe43:f3fd  prefixlen 64  scopeid 0x20<link>
@@ -150,32 +151,32 @@ virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
         
 # hostname 확인
-[root@redhat84 network-scripts]# hostname
-redhat84-1
-[root@redhat84 network-scripts]# hostnamectl
-   Static hostname: redhat84-1
+[root@]# hostname
+centos8-1
+[root@]# hostnamectl
+   Static hostname: centos8-1
          Icon name: computer-vm
            Chassis: vm
-        Machine ID: 278f88458ea344f18268f715bf141eff
-           Boot ID: 0d09be55335e4f82957cff5f52bea7b1
+        Machine ID: 958ee419c8b043dab6b1d12f1d86e242
+           Boot ID: ac27d809fbce4052bf3acf238934a540
     Virtualization: oracle
-  Operating System: Red Hat Enterprise Linux 8.4 (Ootpa)
-       CPE OS Name: cpe:/o:redhat:enterprise_linux:8.4:GA
-            Kernel: Linux 4.18.0-305.el8.x86_64
+  Operating System: CentOS Stream 8
+       CPE OS Name: cpe:/o:centos:centos:8
+            Kernel: Linux 4.18.0-365.el8.x86_64
       Architecture: x86-64
 
 # 각 서버의 ping check
-[root@redhat84 etc]# ping redhat84-1
-PING redhat84-1 (192.168.137.101) 56(84) bytes of data.
+[root@]# ping centos8-1
+PING centos8-1 (192.168.137.101) 56(84) bytes of data.
 64 bytes from redhat84-1 (192.168.137.101): icmp_seq=1 ttl=64 time=0.081 ms
 
-[root@redhat84 etc]# ping redhat84-2
-PING redhat84-2 (192.168.137.102) 56(84) bytes of data.
+[root@]# ping redhat84-2
+PING centos8-2 (192.168.137.102) 56(84) bytes of data.
 64 bytes from redhat84-2 (192.168.137.102): icmp_seq=1 ttl=64 time=0.344 ms
 
 
-[root@redhat84 etc]# ping redhat84-3
-PING redhat84-3 (192.168.137.103) 56(84) bytes of data.
+[root@]# ping redhat84-3
+PING centos8-3 (192.168.137.103) 56(84) bytes of data.
 64 bytes from redhat84-3 (192.168.137.103): icmp_seq=1 ttl=64 time=0.681 ms
 
 ```
