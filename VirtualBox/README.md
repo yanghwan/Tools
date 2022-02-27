@@ -119,7 +119,7 @@ redhat84-1
 
 
 
-## 4. host 및 VM Test  
+## 5. HOST 및 VM Test  
 ```bash
 # CLI 방식으로 IP 확인
 [root@redhat84 network-scripts]# ifconfig
