@@ -96,3 +96,38 @@ Release     : 67.el7
 # sudo dnf remove <pkg_name> # 패키지를 삭제하고자 할때 사용합니다. <pkg_name>은 삭제할 패키지의 이름
 
 ```
+
+## CentOS Repo 정보
+```bash
+[BaseOS]
+name=CentOS-$releasever - Base
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=BaseOS&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/BaseOS/$basearch/os/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+
+
+[AppStream]
+name=CentOS-$releasever - AppStream
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=AppStream&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/AppStream/$basearch/os/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+
+[extras]
+name=CentOS-$releasever - Extras
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/extras/$basearch/os/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+
+[cr]
+name=CentOS-$releasever - cr
+baseurl=http://mirror.centos.org/$contentdir/$releasever/cr/$basearch/os/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+```
