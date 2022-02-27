@@ -2,25 +2,23 @@
 Windows PC환경에서 여래개의 VM을 생성하여 다양한 테스트가 가능하다.  
 기본 구성 및 네트웍에 대한 기본개념을 이해하고 구축을 하면 쉽고 빠르게 구축을 할수 있다.  
 
-
 ![image](https://user-images.githubusercontent.com/39255123/155870608-f946a1b3-6b80-4b6b-9778-1c40f59c43a3.png)
 
+위의 기본적인 구성을 위해서는 아래와 같은 단계로 구성을 진행한다.  
+![image](https://user-images.githubusercontent.com/39255123/155870665-96c42490-41f2-4bc6-bf17-33fb3e8fd31a.png)
 
-및 테스트 하기 
 
-# Volume 
-LVM(Logical Volume Manager)을 이용하면, 데이터의 손실 없이 복수의 HDD를 연결하여 하나의 통합된 파티션을 구성하는 것이 가능하다.  
-LVM의 기본은, 복수의 HDD(엄밀히 말하자면 Physical Volume)로부터 구성되는 기억장치의 유닛들을 통합한 Logical Volume을 생성하고, 이를 각 파티션에 할당하는 것이다.  
-여기에, 파티션 영역을 조정해야 할 필요가 생겼을 때 유닛을 추가/삭제 함으로써 파티션영역을 위한 공간을 확대/축소 하는 것이 가능하다.  
+## 1. VirtualBox Install 
+``` bash
+1. Site 
+   https://www.virtualbox.org/wiki/Downloads
+```
 
- ![lvm](https://user-images.githubusercontent.com/39255123/141877514-51664512-d69a-4a58-978b-873212e23613.png)  
+## 2. Host Virtual Network 
+VirtualBox를 설치하게 되면 가상인터페이스(VirtualBox Host-Only Network)가 생성된것을 확인할수 있으며, 해당 인터페이스가 G/W 역활을 해주면서 통신 및 인터넷이 가능하다.  
+![image](https://user-images.githubusercontent.com/39255123/155871008-e7811bf7-81f8-484a-b5b9-1453c7ea92de.png)
 
-물리 매체 (Physical Media) : 대체로 하드디스크라고 보면 된다. /dev/sda, /dev/hda 같은 것들이다.  
-물리 볼륨 (Physical Volume, PV) : 물리 매체의 연속된 블록을 지칭하는 것으로, 쉽게 말하자면 HDD전체 일 수도 있고, HDD의 일부분 일 수도 있다.  
-중요한 건 HDD의 연속된 블록 1개 = PV 라는 개념이다.  
-물리 확장 (Physical Extend, PE) : 다음에 설명할 논리 볼륨을 잘게 썰어 놓은 것의 일부이다. 보통 4MB 단위로 썰어져 있다.  
-논리 볼륨 (Logical Volume, LV) : 오늘의 주인공. 흔히 말하는 파티션과 거의 같은 개념이다.  
-볼륨 그룹 (Volume Group, VG) : 복수의 논리 볼륨들의 그룹을 뜻한다.  
-논리볼륨(LV)를 생성하기 위해서는 fdisk를 이용하여 생성할수 있다.  
-
+-- VirtualBox Host-Only Network : HOST PC 와 Virtual Machine 들간의 Network 통신을 위한 인터페이스 역활를 수행한다.  
+-- VM은 해당 IP(192.168.137.1)를 G/W IP로 설정한다.    
+![image](https://user-images.githubusercontent.com/39255123/155871386-91f0c502-5d9b-48a4-b5c3-62d36619ecf7.png)
 
