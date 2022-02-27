@@ -57,7 +57,7 @@ Windows IP 구성
 
 
 
-## VM 네트웍 및 System 설정
+## 4. VM 네트웍 및 System 설정
 
 - 고정 IP 설정 
 아래의 방법으로 동일한 방식으로 3ea의 VM에 IP를 설정하여 인터페이스를 재기동 한다.  
@@ -119,6 +119,7 @@ redhat84-1
 
 
 
+## host 및 VM Test  
 ```bash
 # CLI 방식으로 IP 확인
 [root@redhat84 network-scripts]# ifconfig
