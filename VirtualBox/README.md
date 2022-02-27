@@ -15,10 +15,31 @@ Windows PC환경에서 여래개의 VM을 생성하여 다양한 테스트가 �
 ```
 
 ## 2. Host Virtual Network 
-VirtualBox를 설치하게 되면 가상인터페이스(VirtualBox Host-Only Network)가 생성된것을 확인할수 있으며, 해당 인터페이스가 G/W 역활을 해주면서 통신 및 인터넷이 가능하다.  
+VirtualBox를 설치하게 되면 가상인터페이스(VirtualBox Host-Only Network)가 생성된것을 확인할수 있으며, 인터페이스가 Host PC까지 Gateway 역활를 수행해준다.  
+생성한 VM이 외부통신을 위해서는 Wifi 및 Ethernet를 사용해야되며, 공유되도록 설정이 필요하다.  
 ![image](https://user-images.githubusercontent.com/39255123/155871008-e7811bf7-81f8-484a-b5b9-1453c7ea92de.png)
 
--- VirtualBox Host-Only Network : HOST PC 와 Virtual Machine 들간의 Network 통신을 위한 인터페이스 역활를 수행한다.  
--- VM은 해당 IP(192.168.137.1)를 G/W IP로 설정한다.    
+- VirtualBox Host-Only Network  
+VirtualBox Host-Only Network : HOST PC 와 Virtual Machine 들간의 Network 통신을 위한 인터페이스 역활를 수행한다.  
+VM은 해당 IP(192.168.137.1)를 G/W IP로 설정한다.    
 ![image](https://user-images.githubusercontent.com/39255123/155871386-91f0c502-5d9b-48a4-b5c3-62d36619ecf7.png)
 
+```bash
+# Cli를 이용하여 ip 확인
+c:\>ipconfig
+Windows IP 구성
+
+이더넷 어댑터 VirtualBox Host-Only Network:
+
+   연결별 DNS 접미사. . . . :
+   링크-로컬 IPv6 주소 . . . . : fe80::c895:844a:68c5:229f%15
+   IPv4 주소 . . . . . . . . . : 192.168.137.1
+   서브넷 마스크 . . . . . . . : 255.255.255.0
+   기본 게이트웨이 . . . . . . :
+   
+```
+- Wifi 및 Ethernet Shared Setting 
+
+
+
+## 
