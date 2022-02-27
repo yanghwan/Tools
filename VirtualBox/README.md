@@ -39,6 +39,9 @@ Windows IP 구성
    
 ```
 - Wifi 및 Ethernet Shared Setting 
+해당 인터페이스를 이용해서 외부 통신을 하기 위해서는 사용하는 인터페이스에서 공유설정을 활성화 해줘야 된다.  
+![image](https://user-images.githubusercontent.com/39255123/155872644-8589cfa3-df4c-41fe-9460-5fccb4e40b5a.png)
+
 
 
  
