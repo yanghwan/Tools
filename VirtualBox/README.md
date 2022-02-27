@@ -23,9 +23,9 @@ VirtualBox를 설치하게 되면 가상인터페이스(VirtualBox Host-Only Net
 VirtualBox Host-Only Network : HOST PC 와 Virtual Machine 들간의 Network 통신을 위한 인터페이스 역활를 수행한다.  
 VM은 해당 IP(192.168.137.1)를 G/W IP로 설정한다.    
 ![image](https://user-images.githubusercontent.com/39255123/155871386-91f0c502-5d9b-48a4-b5c3-62d36619ecf7.png)
-
+  
+Cli를 이용하여 ip 확인  
 ```bash
-# Cli를 이용하여 ip 확인
 c:\>ipconfig
 Windows IP 구성
 
@@ -45,4 +45,4 @@ Windows IP 구성
 
 
  
-## 
+## 3. VirtualBox Host Network
