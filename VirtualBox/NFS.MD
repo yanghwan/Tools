@@ -166,6 +166,9 @@ GPG키 0x8483C65D 가져오는 중:
 [root@centos8-3 data]# mount -t nfs -o nfsvers=3 -vvvv centos8-nfs:/data/NFS /data/mountNFS
 [root@centos8-3 data]# mount -t nfs -o nfsvers=3 centos8-nfs:/data/NFS /data/mountNFS
 
+# 재부팅시 마운트 설정
+# cat /etc/fstab
+  centos8-nfs:/data/NFS /data/mountNFS  nfs  defaults 0 0  ## 추가
 ```
 
 - 정보확인
