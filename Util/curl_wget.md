@@ -64,6 +64,13 @@ curl -k https://raw.githubusercontent.com/prometheus/prometheus/main/documentati
 curl -X POST -H "Content-Type: application/json" "url" -d "{\"dto\":{\"doList\" :[{\"macAddr\":\"00:00:00:00:00:00\",\"ipv4Addr\":\"99.99.99.99\",\"hostType\":\"0\"}]}}"
 curl -X DELETE -H "Content-Type: application/json" "url/arp-host/00:00:00:00:00:00?ip=99.99.99.99&type=0&vlan=0"
 
+# 브라우저에서는 잘되나 연결이후 TIMEOUT 발생할때.
+ex) curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    curl: (28) Operation timed out after 300671 milliseconds with 0 out of 0 bytes received
+ - 옵션 변경 -I 를 주면 정상적으로 download 됨.
+   정상적으로 다운됨.
+ 
+ 
 ```
 참조자료 :  https://www.lesstif.com/software-architect/curl-http-get-post-rest-api-14745703.html  
  
