@@ -105,3 +105,20 @@ my-release-apache   1/1     1            1           4m36s
 
 ```
 
+- 삭제
+```bash
+[root@centos8-1 ~]# helm ls
+NAME            NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+my-release      default         1               2022-03-07 22:46:07.697797878 +0900 KST deployed        apache-9.0.6    2.4.52     
+[root@centos8-1 ~]# 
+[root@centos8-1 ~]# helm uninstall my-release 
+release "my-release" uninstalled
+[root@centos8-1 ~]# helm ls
+NAME    NAMESPACE       REVISION        UPDATED STATUS  CHART   APP VERSION
+[root@centos8-1 ~]# kubectl get svc -n default
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   2d20h
+[root@centos8-1 ~]# kubectl get deployment -n default
+No resources found in default namespace.
+```
+
