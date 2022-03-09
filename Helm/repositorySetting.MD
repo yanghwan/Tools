@@ -89,7 +89,7 @@ remote:      https://github.com/yanghwan/helm-charts/pull/new/origin
 remote: 
 To https://github.com/yanghwan/helm-charts.git
  * [new branch]      origin -> origin
-token : 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
+token : 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
 ```
 #### 3. Repository Branch 생성  
 ![image](https://user-images.githubusercontent.com/39255123/157248988-9ae9a8d3-03f0-469f-a8c3-dd3eead99d53.png)
