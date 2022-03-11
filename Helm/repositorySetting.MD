@@ -95,10 +95,43 @@ token : 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
 ![image](https://user-images.githubusercontent.com/39255123/157248988-9ae9a8d3-03f0-469f-a8c3-dd3eead99d53.png)
 Branch 생성이후 사용할 Git 주소를 이용하여 Chart Upload 및 Helm Repository를 등록한다.  
 
-### Local Folder를 Helm Repository 등록
+### GitHub Helm Repository 등록
 repository는 index.yaml이 존재하는 경로까지 기술해야  repo에 등록을 한다.  
 ```bash
-helm repo add github-stable https://github.com/yanghwan/helm-charts.git/helm-charts/stable
+[root@centos8-1 ~]# helm repo add github-stable https://yanghwan.github.io/helm-charts/helm-charts/stable
+"github-stable" has been added to your repositories
+
+[root@centos8-1 ~]# helm repo list
+NAME            URL                                                      
+github-stable   https://yanghwan.github.io/helm-charts/helm-charts/stable
+
+[root@centos8-1 ~]# helm search repo apache
+NAME                    CHART VERSION   APP VERSION     DESCRIPTION                                       
+github-stable/apache    9.0.6           2.4.52          Apache HTTP Server is an open-source HTTP serve...
+
+
 ```
 
+### Helm install 
+```bash
+#helm install github-stable/apache  --generate-name 
+
+[root@centos8-1 ~]# helm list
+NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
+apache-1647006204       default         1               2022-03-11 22:43:24.719682719 +0900 KST deployed        apache-9.0.6    2.4.52   
+
+[root@centos8-1 ~]# kubectl get deployments -A
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+default       apache-1647006204         1/1     1            1           31m
+
+```
+
+### helm unstall 
+```bash
+[root@centos8-1 ~]# helm uninstall apache-1647006204 
+release "apache-1647006204" uninstalled
+[root@centos8-1 ~]# helm list
+NAME    NAMESPACE       REVISION        UPDATED STATUS  CHART   APP VERSION
+
+```
 
