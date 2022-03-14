@@ -14,7 +14,7 @@ rancher-latest  https://releases.rancher.com/server-charts/latest
 # download
 c:\helm-3.8.1>helm fetch jetstack/cert-manager
 c:\helm-3.8.1>helm fetch rancher-latest/rancher
-c:\helm-3.8.1>curl https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml > cert-manager.crds.yaml
+c:\helm-3.8.1>curl -fsSL   https://github.com/jetstack/cert-manager/releases/download/v1.7.1/cert-manager.crds.yaml > cert-manager.crds.yaml
 
 c:\helm-3.8.1>dir
  Volume in drive C has no label.
@@ -39,8 +39,19 @@ c:\helm-3.8.1>dir
 # kubectl create namespace cattle-system
 # kubectl create namespace cert-manager
 
-# 
+# [root@centos8-1 rancher]# kubectl apply -f cert-manager.crds.yaml 
+customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created
 
+# helm install \
+  cert-manager cert-manager-v1.7.1.tgz \
+  --namespace cert-manager \
+  --version v1.7.1
+  
 # helm install --generate-name  rancher-2.6.3.tgz
 
 ```
