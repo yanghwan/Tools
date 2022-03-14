@@ -1,6 +1,6 @@
 ### Helm 기반 Rancher Deploy하기
 
-chart package download   
+- chart package download   
 ```
 c:\helm-3.8.1>helm repo add jetstack https://charts.jetstack.io
 "jetstack" has been added to your repositories
@@ -16,9 +16,33 @@ c:\helm-3.8.1>helm fetch jetstack/cert-manager
 c:\helm-3.8.1>helm fetch rancher-latest/rancher
 c:\helm-3.8.1>curl https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml > cert-manager.crds.yaml
 
+c:\helm-3.8.1>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 5C45-3F0C
+
+ Directory of c:\helm-3.8.1
+
+2022-03-14  오후 11:00    <DIR>          .
+2022-03-14  오후 10:42            59,048 cert-manager-v1.7.1.tgz
+2022-03-14  오후 10:43               158 cert-manager.crds.yaml
+2022-03-11  오후 10:00        46,249,984 helm.exe
+2022-03-10  오전 06:28            11,373 LICENSE
+2022-03-14  오후 11:00            13,108 rancher-2.6.3.tgz
+2022-03-10  오전 06:28             3,367 README.md
+               6 File(s)     46,337,038 bytes
+               1 Dir(s)  141,065,134,080 bytes free
+               
 ```
 
+- Install  
+```bash
+kubectl create namespace cattle-system
+kubectl create namespace cert-manager
 
+
+# helm install --generate-name  rancher-2.6.3.tgz
+
+```
 ###  Rancher K8S에 올리기
 - cert-manager
 ```bash
