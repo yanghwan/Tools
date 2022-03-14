@@ -51,7 +51,20 @@ customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io create
   cert-manager cert-manager-v1.7.1.tgz \
   --namespace cert-manager \
   --version v1.7.1
-  
+
+# helm install rancher rancher-2.6.3.tgz \
+  --namespace cattle-system \
+  --set hostname=${hostname} 
+
+[root@centos8-1 rancher]# kubectl get pods --namespace cert-manager
+NAME                                       READY   STATUS      RESTARTS   AGE
+cert-manager-6d6bb4f487-879tq              1/1     Running     0          5m24s
+cert-manager-cainjector-7d55bf8f78-cpkhn   1/1     Running     0          5m24s
+cert-manager-startupapicheck-fkhkw         0/1     Completed   0          5m24s
+cert-manager-webhook-577f77586f-4bgwc      1/1     Running     0          5m24s
+[root@centos8-1 rancher]# 
+
+
 # helm install --generate-name  rancher-2.6.3.tgz
 
 ```
@@ -111,111 +124,7 @@ NAME                                       READY   STATUS              RESTARTS 
 cert-manager-6d87886d5c-tzmzq              0/1     ContainerCreating   0          16s
 cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          16s
 cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          16s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              0/1     ContainerCreating   0          19s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          19s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          19s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          21s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          21s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          21s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          22s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          22s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          22s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          23s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          23s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          23s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          25s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          25s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          25s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          26s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          26s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          26s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          27s
-cert-manager-cainjector-55db655cd8-hsrlp   0/1     ContainerCreating   0          27s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          27s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          48s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          48s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          48s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          49s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          49s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          49s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          50s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          50s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          50s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          51s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          51s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          51s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          52s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          52s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          52s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          54s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          54s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          54s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          55s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          55s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          55s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS              RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running             0          56s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running             0          56s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     ContainerCreating   0          56s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running   0          57s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running   0          57s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     Running   0          57s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running   0          59s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running   0          59s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     Running   0          59s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running   0          60s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running   0          60s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     Running   0          60s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running   0          62s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running   0          62s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     Running   0          62s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running   0          64s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running   0          64s
-cert-manager-webhook-7d8c86cb4c-hr86r      0/1     Running   0          64s
-[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS    RESTARTS   AGE
-cert-manager-6d87886d5c-tzmzq              1/1     Running   0          85s
-cert-manager-cainjector-55db655cd8-hsrlp   1/1     Running   0          85s
-cert-manager-webhook-7d8c86cb4c-hr86r      1/1     Running   0          85s
+
 [root@centos8-1 ~]# 
 
 ```
