@@ -122,3 +122,4 @@ kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   2d20h
 No resources found in default namespace.
 ```
 
+helm install --replace --tiller-namespace=system --namespace=system -n somepackage
