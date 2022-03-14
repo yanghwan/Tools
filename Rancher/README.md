@@ -1,7 +1,20 @@
 ### Helm 기반 Rancher Deploy하기
 
-chart Repository 등록  
+chart package download   
 ```
+c:\helm-3.8.1>helm repo add jetstack https://charts.jetstack.io
+"jetstack" has been added to your repositories
+
+c:\helm-3.8.1>helm repo list
+NAME            URL
+jetstack        https://charts.jetstack.io
+rancher-latest  https://releases.rancher.com/server-charts/latest
+
+
+# download
+c:\helm-3.8.1>helm fetch jetstack/cert-manager
+c:\helm-3.8.1>helm fetch rancher-latest/rancher
+c:\helm-3.8.1>curl https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml > cert-manager.crds.yaml
 
 ```
 
