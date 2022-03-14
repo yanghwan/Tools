@@ -36,9 +36,10 @@ c:\helm-3.8.1>dir
 
 - Install  
 ```bash
-kubectl create namespace cattle-system
-kubectl create namespace cert-manager
+# kubectl create namespace cattle-system
+# kubectl create namespace cert-manager
 
+# 
 
 # helm install --generate-name  rancher-2.6.3.tgz
 
