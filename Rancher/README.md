@@ -54,14 +54,14 @@ customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io create
 
 # helm install rancher rancher-2.6.3.tgz \
   --namespace cattle-system \
-  --set hostname=${hostname} 
+  --set hostname=centos8-2
 
-[root@centos8-1 rancher]# kubectl get pods --namespace cert-manager
-NAME                                       READY   STATUS      RESTARTS   AGE
-cert-manager-6d6bb4f487-879tq              1/1     Running     0          5m24s
-cert-manager-cainjector-7d55bf8f78-cpkhn   1/1     Running     0          5m24s
-cert-manager-startupapicheck-fkhkw         0/1     Completed   0          5m24s
-cert-manager-webhook-577f77586f-4bgwc      1/1     Running     0          5m24s
+[root@centos8-1 ~]# kubectl get pods --namespace cert-manager
+NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-6d6bb4f487-vmr2w              1/1     Running   0          68s
+cert-manager-cainjector-7d55bf8f78-kk4tv   1/1     Running   0          68s
+cert-manager-startupapicheck-s7w4b         1/1     Running   0          66s
+cert-manager-webhook-577f77586f-gx6xz      1/1     Running   0          68s
 [root@centos8-1 rancher]# 
 
 
