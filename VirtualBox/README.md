@@ -116,6 +116,26 @@ centos8-1
 192.168.137.101 centos8-1
 192.168.137.102 centos8-2
 192.168.137.103 centos8-3
+
+- /etc/nsswitch.conf 순위조정
+#hosts: files dns 라는 부분은 호스트명을 찾을 때 1) /etc/hosts 파일에서 먼저 찾아보고 2) DNS에서 찾겠다는 뜻이다.
+
+
+# vi /etc/host.conf
+multi on
+
+order hosts,bind
+ 
+
+도메인요청시 도메인 검색 순서
+- 어떤 특정도메인에 대해 IP 주소 값을 찾을 때, 주소값을 어디에서 찾을 것인가를 결정하는 파일 (해석 방법 및 순서 지정)
+- 도메인 네임서비스를 어디서 받을것인가를 정의해 놓은 파일
+- 네트워크에 연결되어있는 호스트를 찾고자 할 경우 /etc/hosts 파일을 참고할지 네임서버에 질의를 할지의 순서를 결정
+- 기본적으로 /etc/hosts 파일을 먼저 검색하도록 설정되어있음
+
+hosts : /etc/hosts 파일을 의미
+bind : DNS를 의미, /etc/resolv.conf에 정의된 nameserver를 의미
+nis : NIS에 의한 도메인 쿼리
 ```
 
 
