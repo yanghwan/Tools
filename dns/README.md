@@ -82,6 +82,9 @@ zone "120.137.168.192.in-addr.arpa" IN {
 ```
 - 정방향&역방향 File 생성후 설정
 ```bash
+# named.localhost라는 정방향 조회파일을 복사후 수정
+# named.loopback이라는 역방향 조회파일을 복사후 수정
+
 [root@centos8-dns named]# cd /var/named
 [root@centos8-dns named]# ls
 rancherui.com.db  rancherui.com.rdb  
@@ -116,7 +119,7 @@ $TTL 1D
  
 
 ```
-- 
+- named restart
 ```bash
 systemctl restart named
 systemctl enable named
