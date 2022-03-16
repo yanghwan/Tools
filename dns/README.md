@@ -227,4 +227,23 @@ MulticastDNS setting: yes
   Current DNS Server: 192.168.137.120
          DNS Servers: 192.168.137.120
                       168.126.63.1
+                      
+# Test
+[root@centos8-nfs ~]# nslookup
+> www.rancherui.com
+Server:         192.168.137.120
+Address:        192.168.137.120#53
+
+Name:   www.rancherui.com
+Address: 192.168.137.102
+> www.google.com  
+Server:         192.168.137.120
+Address:        192.168.137.120#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 142.250.204.68
+Name:   www.google.com
+Address: 2404:6800:4005:813::2004
+
 ```
