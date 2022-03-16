@@ -55,7 +55,8 @@ customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io create
 # helm install rancher rancher-2.6.3.tgz \
   --namespace cattle-system \
   --set hostname=www.rancherui.com  \
-  --set bootstrapPassword=helm \
+  --set bootstrapPassword=helmadmin \
+  --set ingress.tls.source=rancher\
   --set replicas=1
 
 [root@centos8-1 ~]# kubectl get pods --namespace cert-manager
