@@ -214,3 +214,17 @@ lines 1-22/22 (END)
 
 ```
 
+- Client에서 Test 진행
+```bash
+# Client에서는 DNS에 해당 DNS 서버를 추가한다.
+[root@centos8-nfs ~]#  resolvectl status
+Global
+       LLMNR setting: yes
+MulticastDNS setting: yes
+  DNSOverTLS setting: no
+      DNSSEC setting: allow-downgrade
+    DNSSEC supported: yes
+  Current DNS Server: 192.168.137.120
+         DNS Servers: 192.168.137.120
+                      168.126.63.1
+```
