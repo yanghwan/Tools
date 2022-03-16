@@ -59,6 +59,15 @@ customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io create
   --set ingress.tls.source=rancher\
   --set replicas=1
 
+# helm install rancher rancher-latest/rancher \
+  --namespace cattle-system \
+  --set hostname=www.rancherui.com  \
+  --set bootstrapPassword=helmadmin \
+  --set ingress.tls.source=rancher\
+  --set replicas=1
+
+
+
 [root@centos8-1 ~]# kubectl get pods --namespace cert-manager
 NAME                                       READY   STATUS    RESTARTS   AGE
 cert-manager-6d6bb4f487-vmr2w              1/1     Running   0          68s
@@ -95,9 +104,9 @@ Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "rancher-latest" chart repository
 Update Complete. ⎈Happy Helming!⎈
 [root@centos8-1 ~]# helm install \
->   cert-manager jetstack/cert-manager \
->   --namespace cert-manager \
->   --version v1.0.4
+   cert-manager jetstack/cert-manager \
+   --namespace cert-manager \
+   --version v1.0.4
 
 NAME: cert-manager
 LAST DEPLOYED: Mon Mar  7 00:03:35 2022
