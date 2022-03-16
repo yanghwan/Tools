@@ -56,7 +56,7 @@ customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io create
   --namespace cattle-system \
   --set hostname=www.rancherui.com  \
   --set bootstrapPassword=helm \
-  --set replica=1
+  --set replicas=1
 
 [root@centos8-1 ~]# kubectl get pods --namespace cert-manager
 NAME                                       READY   STATUS    RESTARTS   AGE
