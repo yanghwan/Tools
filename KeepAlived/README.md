@@ -1,21 +1,42 @@
 # KeepAlived 
-Windows PC환경에서 여래개의 VM을 생성하여 다양한 테스트가 가능하다.  
-기본 구성 및 네트웍에 대한 기본개념을 이해하고 구축을 하면 쉽고 빠르게 구축을 할수 있다.  
+L4 서버가 없을때 VIP를 사용하기 위해서 Keepalived를 이용하여 쉽고 빠르게 구축을 할수 있다. 
 
-![image](https://user-images.githubusercontent.com/39255123/155880305-9d9b3dbb-a86f-4867-9f5d-58ee10d7915a.png)
-
-
-위의 기본적인 구성을 위해서는 아래와 같은 단계로 구성을 진행한다.  
-![image](https://user-images.githubusercontent.com/39255123/155870665-96c42490-41f2-4bc6-bf17-33fb3e8fd31a.png)
+![image](https://user-images.githubusercontent.com/39255123/159275480-36d0eeb0-ddd4-41ab-85ec-1ef571972dfb.png)
 
 
-## 1. VirtualBox Install 
+
+
+## 1. KeepAlived Install 
 ``` bash
-1. Site 
-   https://www.virtualbox.org/wiki/Downloads
+ # yum install -y keepalived
+ 
 ```
 
-## 2. Host Virtual Network 
+## 2. 각 Node별 KeepAlived 설정
+```bash
+root@master:~$ vim /etc/keepalived/keepalived.conf
+! Configuration File for keepalived
+
+global_defs {
+   router_id LVS_DEVEL
+}
+
+vrrp_instance VI_1 {
+    state MASTER
+    interface enp0s3
+    virtual_router_id 51
+    priority 200
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.0.100/24
+    }
+}
+
+```
 VirtualBox를 설치하게 되면 가상인터페이스(VirtualBox Host-Only Network)가 생성된것을 확인할수 있으며, 인터페이스가 Host PC까지 Gateway 역활를 수행해준다.  
 생성한 VM이 외부통신을 위해서는 Wifi 및 Ethernet를 사용해야되며, 공유되도록 설정이 필요하다.  
 ![image](https://user-images.githubusercontent.com/39255123/155871008-e7811bf7-81f8-484a-b5b9-1453c7ea92de.png)
