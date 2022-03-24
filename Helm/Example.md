@@ -11,7 +11,7 @@ Helm Directory 구조를 파악후 용도 및 기능에 맞춰서 yaml 파일을
 PS C:\yanghwan\helm> tree worklist /f
 C:\YANGHWAN\HELM\WORKLIST
 │  .helmignore
-│  Chart.yaml
+│  Chart.yaml                                 # 
 │  values.yaml
 │
 ├─charts
@@ -26,7 +26,22 @@ C:\YANGHWAN\HELM\WORKLIST
     │
     └─tests
             test-connection.yaml
+
+# 파일 설명
+#1. Chart.yaml 
+  - helm create를 수행하면 자동으로 생성되며, 기본적인 정보 관리
+  - apiVersion, name, description, type, version, appVersion 필드등을 입력
+#2. values.yaml 
+  - template 디렉터리 밑에 위치한 Manifest Template 파일들과 결합하여 실제 Kubernetes Manifest 생성
+#3. Template 폴더 
+
+
+alues.yaml 파일을 살펴보겠습니다. 사실 살펴볼 것도 없이 굉장히 명확합니다. 이 파일에 기록되는 데이터는 후에 설명 드릴 를 만들게 됩니다.
+
+
 ```
+
+
 
 
 Helm의 기본 구조는 다음과 같습니다. (Helm 3.0 기준으로 확인한 내용입니다)
