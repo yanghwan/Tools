@@ -34,6 +34,17 @@ C:\YANGHWAN\HELM\WORKLIST
 #2. values.yaml 
   - template 디렉터리 밑에 위치한 Manifest Template 파일들과 결합하여 실제 Kubernetes Manifest 생성
 #3. Template 폴더 
+  - Chart를 통해 생성될 서비스 오프젝트 
+  - ex) ConfigMap를 생성한다고 가정하며 ConfigMap.yaml 생성해서 정의에 맞게 수정하면 helm install시 적용이 된다.
+ 
+env:
+  {{- range .Values.env }}
+  - name: {{ .name }}
+    value: {{ .value }}
+  {{- end }}
+위 내용을 Deployment 파일에 추가해주면 됩니다. 물론, Deployment 파일의 형식은 지켜주셔야 합니다. env 필드는 spec.template.spec.containers.env 에 위치해야 합니다. 추가로 range는 해당 값이 리스트 형태로 정의되어 있을 때, 해당 리스트를 순회하면서 하나씩 데이터를 넣어주게 됩니다. 일종의 for문이라고 생각하시면 됩니다.
+
+여기서 정의한 .Values.env 에 대응할 수 있도록 values.yaml 파일에도 env 필드를 추가해주어야 합니다. 예를 들어, values.yaml 에 다음과 같이 정의해두었다면, helm으로 Kubernetes Manifest를 생성했을 때, env 필드가 채워져서 들어가게 됩니다.
 
 
 alues.yaml 파일을 살펴보겠습니다. 사실 살펴볼 것도 없이 굉장히 명확합니다. 이 파일에 기록되는 데이터는 후에 설명 드릴 를 만들게 됩니다.
