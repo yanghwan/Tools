@@ -42,7 +42,7 @@ C:\YANGHWAN\HELM\WORKLIST
 
 ```
 
-### windows에서 Helm Chart 실행하기
+## Windows에서 Helm Chart 실행하기
 1. kubectl download
 ```bash
 c:\ curl -LO "https://dl.k8s.io/release/v1.23.0/bin/windows/amd64/kubectl.exe"
@@ -77,3 +77,7 @@ centos8-2   Ready      <none>                 20d   v1.21.10
 centos8-3   NotReady   <none>                 19d   v1.21.10
 ```
 
+## Helm Chart 실행
+```bash
+https://blog.naver.com/mantechbiz/221447296981
+```
