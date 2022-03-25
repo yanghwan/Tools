@@ -42,6 +42,18 @@ C:\YANGHWAN\HELM\WORKLIST
 
 ```
 
+### windows에서 Helm Chart 실행하기
+1. kubectl download
+```bash
+c:\ curl -LO "https://dl.k8s.io/release/v1.23.0/bin/windows/amd64/kubectl.exe"
+
+```
+
+2. key 다운로드
+```bash
+
+```
+
 https://swalloow.github.io/umbrella-helm-chart/
 
 
