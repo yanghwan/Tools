@@ -120,4 +120,5 @@ helm init --service-account tiller
 ## Helm Chart 실행
 ```bash
 https://blog.naver.com/mantechbiz/221447296981
+https://blog.naver.com/isc0304/222513958747
 ```
