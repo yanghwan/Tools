@@ -57,6 +57,11 @@ C:\Users\yangh>cd %USERPROFILE%
 C:\Users\yangh>mkdir .kube
 C:\Users\yangh>cd .kube
 
+# Config 환경설정 (default를 사용하지 않는경우)
+# windows cmd 창에서 kubectl 명령어 수행가능
+# set KUBECONFIG=C:\helm-3.8.1\kube 
+
+
 # Master Server에서 config File Copy
 C:\Users\yangh\.kube>sftp root@192.168.137.101
 root@192.168.137.101's password:
@@ -75,7 +80,42 @@ NAME        STATUS     ROLES                  AGE   VERSION
 centos8-1   Ready      control-plane,master   20d   v1.21.10
 centos8-2   Ready      <none>                 20d   v1.21.10
 centos8-3   NotReady   <none>                 19d   v1.21.10
+
+# ServiceAccount 생성
+kubectl create serviceaccount yanghwan
+
+#role & rolebinding
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: helm-manager
+rules:
+  - apiGroups: ["", "batch", "extensions", "apps"]
+    resources: ["*"]
+    verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: helm-binding
+subjects:
+  - kind: ServiceAccount
+    name: yanghwan
+roleRef:
+  kind: Role
+  name: helm-manager
+  apiGroup: rbac.authorization.k8s.io
+  
+# helm init(serviceaccount setting)
+helm init --service-account tiller 
+
+
+
+
+
 ```
+
+
 
 ## Helm Chart 실행
 ```bash
