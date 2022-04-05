@@ -33,3 +33,6 @@ firewall-cmd --reload
   
 #firewall-cmd --reload
 ```
+
+
+https://stackoverflow.com/questions/21983554/iptables-v1-4-14-cant-initialize-iptables-table-nat-table-does-not-exist-d
