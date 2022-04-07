@@ -81,14 +81,23 @@ centos8-1   Ready      control-plane,master   20d   v1.21.10
 centos8-2   Ready      <none>                 20d   v1.21.10
 centos8-3   NotReady   <none>                 19d   v1.21.10
 
-# ServiceAccount 생성
-kubectl create serviceaccount yanghwan
+#namespace 생성
+[root@centos8-1 ~]# kubectl create namespace yanghwan
+namespace/yanghwan created
 
-#role & rolebinding
+  
+#serviceaccount & role & rolebinding
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: yanghwan
+  namespace: yanghwan
+---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: helm-manager
+  namespace: yanghwan  
 rules:
   - apiGroups: ["", "batch", "extensions", "apps"]
     resources: ["*"]
@@ -98,14 +107,20 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: helm-binding
+  namespace: yanghwan  
 subjects:
   - kind: ServiceAccount
     name: yanghwan
+    namespace: yanghwan    
 roleRef:
   kind: Role
   name: helm-manager
   apiGroup: rbac.authorization.k8s.io
   
+# Namespace Default Setting  
+#kubectl config set-context --current --namespace=yanghwan
+
+
 # helm init(serviceaccount setting)
 
 # K8S RootCA로 부터 인증서 발급받기
@@ -201,7 +216,20 @@ YafEx/AC+2/jRtaz6+0IMq3VczvGXTLUktENLCVxPeQn/n0OX/oJ
 -----END CERTIFICATE-----
 
 
+
+#인증을 위한 사용자 정보 등록 (key, crt 로 접속)
+# kubectl config set-credentials yanghwan@helm --client-certificate=/root/yanghwan.crt --client-key=/root/yanghwan.key --embed-certs=true
+ 
+
+# Kubectl config context 생성
+# kubectl config get-clusters NAME cluster.local 
+#context 생성
+# kubectl config set-context yanghwan@helm --cluster=kubernetes --user=yanghwan --namespace=yanghwan
+
+
+
 ```
+
 
 
 
