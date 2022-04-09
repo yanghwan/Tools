@@ -200,3 +200,12 @@ PING centos8-3 (192.168.137.103) 56(84) bytes of data.
 64 bytes from redhat84-3 (192.168.137.103): icmp_seq=1 ttl=64 time=0.681 ms
 
 ```
+
+## VirtualBox Disk Commpact 하기
+```bash
+C:\VirtualBox>vboxmanage modifymedium  "C:\Users\yangh\VirtualBox VMs\Centos8-120-dns\Centos8-120-dns-disk1.vdi" --compact
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+
+C:\VirtualBox>
+```
+
