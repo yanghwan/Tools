@@ -70,7 +70,7 @@ ex) curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
  - 옵션 변경 -I 를 주면 정상적으로 download 됨.
    정상적으로 다운됨.
  
- 
+https://reqbin.com/req/c-bvijc9he/curl-follow-redirect 
 ```
 참조자료 :  https://www.lesstif.com/software-architect/curl-http-get-post-rest-api-14745703.html  
  
