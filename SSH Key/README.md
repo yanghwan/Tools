@@ -50,5 +50,5 @@ Last login: Wed Jul 13 00:08:31 2022 from 192.168.137.1
 [root@centos8-143 ~]# exit
 logout
 Connection to 192.168.137.143 closed.
-[root@centos8-140 ~]# 
+[root@centos8-140 ~]#   
 ```
