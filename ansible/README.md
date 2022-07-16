@@ -35,7 +35,23 @@ www[01:50].example.com
       
 ```
 
+- 실행
+```bash
+#ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
+```
 
+```bash
+[WARNING]: an unexpected error occurred during Jinja2 environment setup: unable to locate collection ansible.netcommon
+
+TASK [Check that python netaddr is installed] **************************************************************************************************************************
+fatal: [localhost]: FAILED! => {"msg": "The conditional check ''127.0.0.1' | ipaddr' failed. The error was: template error while templating string: unable to locate collection ansible.netcommon. String: {% if '127.0.0.1' | ipaddr %} True {% else %} False {% endif %}"}
+
+PLAY RECAP *************************************************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+[root@centos8-140 kubespray]# 
+
+``` 
 - ansible 옵션
 ```bash
 -i  --inventory-file : 적용될 호스트들에 대한 파일 지정
