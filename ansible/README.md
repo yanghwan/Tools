@@ -22,7 +22,18 @@ ansible install 하면 기본적으로 Dirctory 구조로 생성이 된다.
 5. Custom module : 사용자가 직적 작성한 모듈
 ```
 
-
+- inventory 생성방법
+```
+#--- INI File
+[webservers]
+www[01:50].example.com
+ 
+#--- Yaml File
+  webservers:
+    hosts:
+      www[01:50].example.com:
+      
+```
 
 
 - ansible 옵션
