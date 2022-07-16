@@ -13,6 +13,18 @@ ansible install 하면 기본적으로 Dirctory 구조로 생성이 된다.
 1 directory, 2 files
 ```
 
+- ansible 구성요소
+```
+1. inventory : 관리대상 서버리스트
+2. Module : hosts에 특정 Action를 수행하는 패키지화된 Script 
+3. play-book : 변수 및 Tashk를 관리호스트에 수행하기 위한 yaml 문법으로 정의된 파일
+4. plug-in : 확장 기능 (email,logging.etc)를 제공
+5. Custom module : 사용자가 직적 작성한 모듈
+```
+
+
+
+
 - ansible 옵션
 ```bash
 -i  --inventory-file : 적용될 호스트들에 대한 파일 지정
@@ -26,3 +38,6 @@ ansible install 하면 기본적으로 Dirctory 구조로 생성이 된다.
 ```
 #ansible localhost -m ping
 ```
+
+
+Reference : https://github.com/kubernetes-sigs/kubespray/releases
