@@ -41,3 +41,13 @@ ansible install 하면 기본적으로 Dirctory 구조로 생성이 된다.
 
 
 Reference : https://github.com/kubernetes-sigs/kubespray/releases
+            https://github.com/kubernetes-sigs/kubespray/archive/refs/tags/v2.19.0.tar.gz
+            ```
+            Feature / Major changes
+Add hashes for Kubernetes 1.24.0, 1.24.1, 1.21.12, v1.21.13, 1.22.8, 1.22.9, v1.22.10, 1.21.11, 1.23.5, 1.23.6, v1.23.7 and make kubernetes v1.23.7 default (#8628, #8746, #8783, #8876, #8760, @mzaian, @cristicalin)
+[ansible] add support for ansible 5 (ansible-core 2.12) (#8512, @cristicalin)
+[ansible] make ansible 5.x the new default version (#8660, @cristicalin)
+[cert-manager] Update cert-manager to 1.6.1 (#8377, @electrocucaracha)
+[cert-manager] Update cert-manager to v1.7.2 (#8648, @rtsp)
+[cert-manager] Upgrade to v1.8.0 (#8688, @rtsp)
+            ```
