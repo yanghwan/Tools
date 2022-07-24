@@ -17,7 +17,29 @@
 3. 컨트롤머신에서 플레이북이 실행이 될때, 모든 노드에 설치가 되고, 설치된다  
    SSH - small program copy -  module 실행 - 종료후 삭제 (복사한 코드)   
    데몬 / 데이터베이스가 필요하지 않음.
- 
+
+# Environment Setup  
+
+- Installation Process  
+  1. control machine : 다른 머신을 관리하기 위한 머신  
+  2. Remote machine : 컨트롤머신에 의해서 제어/핸들된 머신  
+  하나의 Control Machine에서 다중 Remote Machine를 관리할수 있으며,   
+  Remote Machine를 관리하기 위해서는 Control Machine에는 Ansible를 설치해야한다.  
+
+- Control Machine Requirements  
+   1. Python 2 (versions 2.6 or 2.7) or r Python 3 (versions 3.5 and higher)  
+   2. 컨트롤머신은 윈도우를 지원하지 않는다.   
+   3. Apt, yum, pkg, pip, OpenCSW,pacman etc 를 이용해서 최신 버전을 설치할수 있다.  
+
+- Ubuntu Install
+```bash
+  $ sudo apt-get update
+  $ sudo apt-get install software-properties-common
+  $ sudo apt-add-repository ppa:ansible/ansible
+  $ sudo apt-get update
+  $ sudo apt-get install ansible
+```
+
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
 
