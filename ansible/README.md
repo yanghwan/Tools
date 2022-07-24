@@ -1,11 +1,9 @@
-- ansible 이란    
+### ansible 이란    
 ```bash
 1. 간단한 오픈소스 IT 엔진 (자동으로 Application deploy, 인프라 서비스 통합 , 많은 IT툴과 함께 클라우드 프로비저닝  
 2.yaml (직관적인 언어이며 사람이 읽고 쓰고 이해하기 쉽다.  환경파일을 위해 일반적으로 사용함.)를 사용함.   
 3. agentless이며, SSH 커텍션을 연결해서 간단한 모듈를 실행하고, 종료가 되면 제거가 된다.)  
 ```
-- sample host file  
-![ansible-1](https://user-images.githubusercontent.com/39255123/180646264-39534b7e-7501-4030-922d-3754e7104f4f.png)
 
 - ansible 구성
 
