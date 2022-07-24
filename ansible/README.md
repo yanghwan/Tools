@@ -5,7 +5,7 @@
 3. agentless이며, SSH 커텍션을 연결해서 간단한 모듈를 실행하고, 종료가 되면 제거가 된다.)  
 ```
 - sample host file  
-![image] (https://github.com/yanghwan/Tools/issues/10#issue-1315889887)  
+![ansible-1](https://user-images.githubusercontent.com/39255123/180646264-39534b7e-7501-4030-922d-3754e7104f4f.png)
 
 - ansible 구성
 
