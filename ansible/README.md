@@ -18,7 +18,8 @@
    SSH - small program copy -  module 실행 - 종료후 삭제 (복사한 코드)   
    데몬 / 데이터베이스가 필요하지 않음.
  
-
+# 추가정보  
+  Environment Setup : https://github.com/kubernetes-sigs/kubespray/releases  
 
 # ansible install  
 
