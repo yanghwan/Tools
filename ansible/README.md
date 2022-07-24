@@ -87,7 +87,7 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=1    s
 ```
 #ansible localhost -m ping
 ```
-
+  
 
 Reference :  
 https://github.com/kubernetes-sigs/kubespray/releases  
