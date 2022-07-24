@@ -19,7 +19,7 @@
    데몬 / 데이터베이스가 필요하지 않음.
  
 # 추가정보  
-  Environment Setup : ansible/Environment Setup.md
+  Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
 
 # ansible install  
 
