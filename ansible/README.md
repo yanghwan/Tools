@@ -1,13 +1,23 @@
-### ansible 이란    
-```bash
+# ansible 이란    
+
 1. 간단한 오픈소스 IT 엔진 (자동으로 Application deploy, 인프라 서비스 통합 , 많은 IT툴과 함께 클라우드 프로비저닝  
-2.yaml (직관적인 언어이며 사람이 읽고 쓰고 이해하기 쉽다.  환경파일을 위해 일반적으로 사용함.)를 사용함.   
+2. yaml (직관적인 언어이며 사람이 읽고 쓰고 이해하기 쉽다.  환경파일을 위해 일반적으로 사용함.)를 사용함.   
 3. agentless이며, SSH 커텍션을 연결해서 간단한 모듈를 실행하고, 종료가 되면 제거가 된다.)  
-```
-
-- How Ansible Works?  
 
 
+# How Ansible Works?  
+![ansible-2](https://user-images.githubusercontent.com/39255123/180646634-35389fd9-c1be-4511-bbbd-e2c8ba98586b.png)  
+
+관리 노드: 플레이북의 전체 실행을 제어하는 제어하는 노드  
+인벤토리 파일: Ansible 모듈이 있는 호스트 목록  (host 그룹화 / 플레이북을 특정 그룹에 실행가능)   
+  
+  
+1. 간단한 방법으로 인벤토리와 플레이북으로 한번에 모두 설치한다.  
+2. 인벤토리 :  노드의 IP주소 목록과 playbook 설치가된다.  
+3. 컨트롤머신에서 플레이북이 실행이 될때, 모든 노드에 설치가 되고, 설치된다  
+   SSH - small program copy -  module 실행 - 종료후 삭제 (복사한 코드)   
+   데몬 / 데이터베이스가 필요하지 않음.
+ 
 
 
 - ansible 구성
