@@ -19,7 +19,7 @@
    데몬 / 데이터베이스가 필요하지 않음.
  
 # 추가정보  
-  Environment Setup : https://github.com/kubernetes-sigs/kubespray/releases  
+  Environment Setup : ansible/Environment Setup.md
 
 # ansible install  
 
