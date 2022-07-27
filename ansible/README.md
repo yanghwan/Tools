@@ -39,10 +39,26 @@
   $ sudo apt-get update
   $ sudo apt-get install ansible
 ```
+#  Ansible – YAML Basics    
+안시블은 플레이북들을 표현하기 위해서는 YAML 문법을 사용한다.  
+다른 JSON & XML 데이타 포맷과 비교했을때, Read / Write 가 쉽기 때문에 YAML를 사용한다.  
+YAML는 데이터를 표현하기 위해서는 아래의 규칙을 따른다.  
+
+- YAML 규칙   
+  1. 시작 :  "---"  
+  2. 종료 :  "..."   
+  3. Key - value 쌍으로 구성되며  ":"  으로 구분됨.  
+  4. 목록(LIST형) 표현 : "-" 시작 . 
+  5. key에 대한 값을 리스트형으로 관리 할수 있다.  
+  6. Boolean는 True / false 로 표현하며,  대소문자 구분하지 않는다.  
+  7. "|" - 블록 안에서 줄바꿈  
+  8. "|-" : 마지막 줄바꿈은 제외  
+  9. ">" 불럭내에 줄바꿈을 무시함.  
+  
 
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
-
+  Ansible – YAML Basics   
 # ansible install  
 
 
