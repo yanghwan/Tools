@@ -55,6 +55,32 @@ YAML는 데이터를 표현하기 위해서는 아래의 규칙을 따른다.
   8. "|-" : 마지막 줄바꿈은 제외  
   9. ">" 불럭내에 줄바꿈을 무시함.  
   
+#  Ansible – Ad hoc Commands  
+Ad hoc commands:  playbook 을 작성하지 않고 command-line 에서 직접 앤서블 모듈을 호출해서 실행하는 방식을 말함.  
+
+\- 빠른기능를 수행하기 위해, 개별적으로 수행할수 있는 명령어임.  
+\- 명령을 한번만 사용하기 때문에 구성관리 및 배포에는 사용하지 않는다.   
+\- ansible-playbook : 구성관리 및 배포에 사용  
+
+- example hosts file
+```bash
+[abc]
+centos8-140 ansible_host=192.168.137.140 ansible_port=22 
+centos8-141 ansible_host=192.168.137.141 ansible_port=22 
+```  
+- reboot example  
+     $ Ansible abc -a "/sbin/reboot" -f 12 -u username  
+  2.  ddd
+     
+
+
+      
+
+안시블은 플레이북들을 표현하기 위해서는 YAML 문법을 사용한다.  
+다른 JSON & XML 데이타 포맷과 비교했을때, Read / Write 가 쉽기 때문에 YAML를 사용한다.  
+YAML는 데이터를 표현하기 위해서는 아래의 규칙을 따른다.  
+
+
 
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
