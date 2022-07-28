@@ -68,9 +68,13 @@ Ad hoc commands:  playbook 을 작성하지 않고 command-line 에서 직접 �
 centos8-140 ansible_host=192.168.137.140 ansible_port=22 
 centos8-141 ansible_host=192.168.137.141 ansible_port=22 
 ```  
-- reboot example  
-     $ Ansible abc -a "/sbin/reboot" -f 12 -u username  
-  2.  ddd
+- Ad hoc Commands (example)    
+  1. reboot  
+    $ Ansible abc -a "/sbin/reboot" -f 12 -u username  
+     
+     
+  2.  Transferring file  
+    $ Ansible abc -m copy -a "src=/etc/yum.conf dest=/tmp/yum.conf" 
      
 
 
