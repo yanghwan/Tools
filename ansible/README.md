@@ -63,6 +63,7 @@ Ad hoc commands:  playbook 을 작성하지 않고 command-line 에서 직접 �
 \- ansible-playbook : 구성관리 및 배포에 사용  
 
 ```
+$ ansible [host-group] [option] [command] 
 $ ansible-doc -l    # 모듈 리스트 확인
 $ ansible-doc file  # 특정모듈 도움말.
 ```
