@@ -62,6 +62,10 @@ Ad hoc commands:  playbook 을 작성하지 않고 command-line 에서 직접 �
 \- 명령을 한번만 사용하기 때문에 구성관리 및 배포에는 사용하지 않는다.   
 \- ansible-playbook : 구성관리 및 배포에 사용  
 
+```
+$ ansible-doc -l    # 모듈 리스트 확인
+$ ansible-doc file  # 특정모듈 도움말.
+```
 - example hosts file
 ```bash
 [abc]
@@ -71,20 +75,19 @@ centos8-141 ansible_host=192.168.137.141 ansible_port=22
 - Ad hoc Commands (example)    
   1. reboot  
     $ Ansible abc -a "/sbin/reboot" -f 12 -u username  
-     
-     
   2.  Transferring file  
     $ Ansible abc -m copy -a "src=/etc/yum.conf dest=/tmp/yum.conf" 
-     
-
-
-      
-
-안시블은 플레이북들을 표현하기 위해서는 YAML 문법을 사용한다.  
-다른 JSON & XML 데이타 포맷과 비교했을때, Read / Write 가 쉽기 때문에 YAML를 사용한다.  
-YAML는 데이터를 표현하기 위해서는 아래의 규칙을 따른다.  
-
-
+  3.  Creating new directory  
+    $ Ansible abc -m file -a "dest=/path/user1/new mode=777 owner=user1 group=user1 state=directory"
+  4.  Deleting whole directory and files    
+    $ Ansible abc -m file -a "dest=/path/user1/new state=absent"
+  5.  yum using    
+    $ ansible abc -m yum -a "name=demo-tomcat-1 state=present"  
+    $ ansible abc -m yum -a "name=demo-tomcat-1 state=absent"  
+    $ ansible abc -m yum -a "name=demo-tomcat-1 state=latest"  
+    
+    
+  
 
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
