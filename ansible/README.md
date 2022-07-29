@@ -86,10 +86,14 @@ centos8-141 ansible_host=192.168.137.141 ansible_port=22
     $ ansible abc -m yum -a "name=demo-tomcat-1 state=present"  
     $ ansible abc -m yum -a "name=demo-tomcat-1 state=absent"  
     $ ansible abc -m yum -a "name=demo-tomcat-1 state=latest"  
+  6. Gathering Facts    
+    $ Ansible all -m setup  
     
+# Ansible – Playbooks  
+Ad hoc commands:  playbook 을 작성하지 않고 command-line 에서 직접 앤서블 모듈을 호출해서 실행하는 방식을 말함.  
     
   
-
+ 
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
   Ansible – YAML Basics   
