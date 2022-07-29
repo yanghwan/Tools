@@ -96,8 +96,27 @@ Playbooks은 STEP(특정한 머신에 실행을 원하는 단계)를 포함하�
 PlayBook 구조는 하나이상의 플레이를 실행할수 있는 집합으로 구성이 되어 있으며, 하나이상 실행할수 있다.   
 Playbook는 yaml로 작성을 하며,작성하는 동안 주의가 필요하다.  
 
+- Create a Playbook  (YAML Example)  
+```bash
 
+---
+  name: install and configure DB
+  hosts: testServer
+  become: yes
+  
+  vars:
+    oracle_db_port_value : 1521
+  
+  tasks:
+  -name: Install the Oracle DB
+  yum: <code to install the DB>    
+  
+  -name: Ensure the installed service is enabled and running
+  
+  service:
+  name: <your service name>
 
+```
  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
