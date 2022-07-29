@@ -89,10 +89,15 @@ centos8-141 ansible_host=192.168.137.141 ansible_port=22
   6. Gathering Facts    
     $ Ansible all -m setup  
     
-# Ansible – Playbooks  
-Ad hoc commands:  playbook 을 작성하지 않고 command-line 에서 직접 앤서블 모듈을 호출해서 실행하는 방식을 말함.  
-    
-  
+# Ansible – Playbooks 
+
+Playbook은 ansible의 핵심기능중 하나이며, 실행할 작업목록(Task0를 포함하고 있다.  
+Playbooks은 STEP(특정한 머신에 실행을 원하는 단계)를 포함하고 있고, 순차적으로 실행한다.  
+PlayBook 구조는 하나이상의 플레이를 실행할수 있는 집합으로 구성이 되어 있으며, 하나이상 실행할수 있다.   
+Playbook는 yaml로 작성을 하며,작성하는 동안 주의가 필요하다.  
+
+
+
  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
