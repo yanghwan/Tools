@@ -122,7 +122,13 @@ Playbook는 yaml로 작성을 하며,작성하는 동안 주의가 필요하다.
 3. vars : 플레이북에서 사용할 변수, 다른 프로그램에서 사용방식과 동일함.  
 4. Task : 모든 플레이북에서 실행할 작업 또는 작업 목록을 말함.  
               
- 
+# Ansible – Roles 
+\- 독립적인 프레임웍을 제공,  의존적인 모듈 집합(variables, tasks, files, templates)  
+\-  리소스들을 표준화된  디렉토리 구조로 패키징  
+\- 플레이북을 여러 파일로 나누어 사용하는  기본 메커니즘.  
+\- 복작합 플레이북을 단순화 하고,  재사용 하기 쉽게 만든다.  
+\- 재사용이 가능한 컴포런트로 플레이북을 논리적으로 분할해서 사용할수 있다.  
+  
  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
