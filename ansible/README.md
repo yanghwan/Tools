@@ -128,7 +128,14 @@ Playbook는 yaml로 작성을 하며,작성하는 동안 주의가 필요하다.
 \- 플레이북을 여러 파일로 나누어 사용하는  기본 메커니즘.  
 \- 복작합 플레이북을 단순화 하고,  재사용 하기 쉽게 만든다.  
 \- 재사용이 가능한 컴포런트로 플레이북을 논리적으로 분할해서 사용할수 있다.  
-  
+
+- Creating a New Role  
+\- Roles는  파일시스템에 구조화된 레이아웃을 가지고 있고, 기본구조를 바꿀수도 있다. (변경은 권장하지 않음)  
+\- 디렉토리 트리구조로 되어 있다.
+
+\$ ansible-galaxy -h  
+
+
  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
