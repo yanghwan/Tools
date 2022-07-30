@@ -116,7 +116,13 @@ Playbook는 yaml로 작성을 하며,작성하는 동안 주의가 필요하다.
   service:
   name: <your service name>
 
-```
+```   
+1. name : playbook 논리적인 이름  
+2. hosts : 수행할 호스트 및 호스트그룹   
+3. vars : 플레이북에서 사용할 변수, 다른 프로그램에서 사용방식과 동일함.  
+4. Task : 모든 플레이북에서 실행할 작업 또는 작업 목록을 말함.  
+              
+ 
  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
