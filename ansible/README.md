@@ -133,7 +133,32 @@ Playbook는 yaml로 작성을 하며,작성하는 동안 주의가 필요하다.
 \- Roles는  파일시스템에 구조화된 레이아웃을 가지고 있고, 기본구조를 바꿀수도 있다. (변경은 권장하지 않음)  
 \- 디렉토리 트리구조로 되어 있다.
 
-\$ ansible-galaxy -h  
+- 사용방법
+```bash
+1. Usage  
+$ansible-galaxy [delete|import|info|init|install|list|login|remove|search|setup] [--help] [options]  
+
+2. example
+$ ansible-galaxy --help
+usage: ansible-galaxy [-h] [--version] [-v] TYPE ...
+
+Perform various Role and Collection related operations.
+
+positional arguments:
+  TYPE
+    collection   Manage an Ansible Galaxy collection.
+    role         Manage an Ansible Galaxy role.
+
+optional arguments:
+  --version      show program's version number, config file location, configured module search path, module
+                 location, executable location and exit
+  -h, --help     show this help message and exit
+  -v, --verbose  verbose mode (-vvv for more, -vvvv to enable connection debugging)
+  
+  
+
+```
+\$   
 
 
  
