@@ -156,6 +156,31 @@ optional arguments:
   -v, --verbose  verbose mode (-vvv for more, -vvvv to enable connection debugging)
   
   
+$ ansible-galaxy init --force --offline ansible-example
+- Role ansible-example was created successfully
+$ ls
+ansible-example
+
+$tree ansible-example
+ansible-example
+├── README.md
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+
+8 directories, 8 files
 
 ```
 \$   
