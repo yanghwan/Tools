@@ -225,7 +225,7 @@ finally - always
   Ansible – YAML Basics   
 # ansible install  
 
-
+ 
 - ansible 구성
 
 ansible install 하면 기본적으로 Dirctory 구조로 생성이 된다.
