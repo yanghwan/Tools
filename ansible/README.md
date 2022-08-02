@@ -183,7 +183,39 @@ ansible-example
 8 directories, 8 files
 
 ```
-\$   
+
+# Ansible – Variables  
+\- 모든 프로그래밍 언어에서 변수를 사용하는 것과 매우 유사합니다.  
+\- 변수에 값을 사용 및 할당하고 플레이북에서 참조해서 사용할수 있다.  
+\- 변수 값 주위에 조건을 설정하고 그에 따라 변수를 사용할 수 있다.  
+
+```bash 
+- hosts : <your hosts>
+ vars:
+ tomcat_port : 8080
+
+- 변수를 tomcat_port를 설정하고 플레이북에서는 변수를 사용할수 있다.
+- block : 인시블을을 실행할 불력
+- block name : 로깅에 사용되며, 모든 블록을 디버깅하는데 도움이 된다.
+- action : 실행할 작업
+- register : 실행에 대한 출력를 변수로 등록하여 출력을 사용
+- always: 안시블을 다시 시작함.
+- msg : displays the message
+
+Usage of variable - {{Output}}
+- 변수의 값이 출력이 되며, 하위 속성(출력변경) 도 사용할수가 있음.
+ 
+```
+
+# Exception Handling in Playbooks
+\ - 플레이북의 exception는 Application과 동일함.
+java와 비교했을때  
+try  - block  
+catch - resource  
+finally - always   
+
+# Loop 사용법  
+- with_items:  반복  
 
 
  
