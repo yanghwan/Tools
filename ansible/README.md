@@ -217,7 +217,8 @@ finally - always
 # Loop 사용법  
 - with_items:  반복  
 
-
+# Conditionals  
+- when : 
  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
