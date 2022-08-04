@@ -220,6 +220,41 @@ finally - always
 # Conditionals  
 - when : 
  
+# Ansible – Advanced Execution  
+
+1. How to Limit Execution by Tasks  
+- 특정한 서버만 실행을 하고자 할때, 태그를 기반으로 역할/작업을 실행할수 있다.  
+
+- {role: start-tomcat, tags: ['install']}}  
+--> ansible-playbook -i hosts <your yaml> --tags "install" -vvv  
+
+2. How to Limit Execution by Hosts  
+
+3. Alternate Solution  
+-  --extra-vars 옵션으로 설정한 변수를 제외하는방법  
+
+# Ansible – Advanced Execution  
+
+1. How to Limit Execution by Tasks  
+- 특정한 서버만 실행을 하고자 할때, 태그를 기반으로 역할/작업을 실행할수 있다.  
+
+- {role: start-tomcat, tags: ['install']}}  
+--> ansible-playbook -i hosts <your yaml> --tags "install" -vvv  
+
+2. How to Limit Execution by Hosts  
+
+3. Alternate Solution  
+-  --extra-vars 옵션으로 설정한 변수를 제외하는방법  
+  
+
+# Ansible – Troubleshooting  
+1.  Debug 
+	 - You can run the commands with verbosity level one (-v) or two (-vv)
+2. Register
+
+
+  
+  
 # 추가정보  
   Environment Setup : [ansible/Environment Setup.md](https://github.com/yanghwan/Tools/blob/0de7d25de0de2730a68271de70e4e8341529d046/ansible/Environmen%20Setup.md)  
   Ansible – YAML Basics   
@@ -298,7 +333,10 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=1    s
 Reference :  
 https://github.com/kubernetes-sigs/kubespray/releases  
 https://github.com/kubernetes-sigs/kubespray/archive/refs/tags/v2.19.0.tar.gz  
+https://www.tutorialspoint.com/ansible/ansible_tutorial.pdf  
+  
 ```bash  
+  
 Feature / Major changes
 Add hashes for Kubernetes 1.24.0, 1.24.1, 1.21.12, v1.21.13, 1.22.8, 1.22.9, v1.22.10, 1.21.11, 1.23.5, 1.23.6, v1.23.7 and make kubernetes v1.23.7 default (#8628, #8746, #8783, #8876, #8760, @mzaian, @cristicalin)
 [ansible] add support for ansible 5 (ansible-core 2.12) (#8512, @cristicalin)
