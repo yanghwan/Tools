@@ -21,7 +21,15 @@
 \- module_arg - 모듈에 건네주는 인수. 인수의 형식은 모듈별로 정해져 있으므로 모듈별 문서를 참조해서 설정값을 확인해야 합니다.  
 \- task_directive - 태스크를 실행 단위별로 지정할 수 있는 지시자가 여기에 기술됨.  
 
-  
+- Example 
+```bash
+- name: install the latest version of Apache
+  yum:
+    name: httpd
+    state: latest
+    
+```
+
 Module Reference :  
 \- https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html   
 \- https://docs.ansible.com/ansible/latest/collections/index_module.html  
