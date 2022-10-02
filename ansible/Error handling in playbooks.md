@@ -1,8 +1,18 @@
 # Error handling in playbooks 
+Error 발생 ( a non-zero return code from a command / a failure from a module)시에는 기본적으로 해당호스트에서는 실행이 중지가 되고, 다른 호스트에서 계속 실행한다.
+상황에 따라서 다르게 동작하기를 원할때가 있습니다.
+예를 들어서 non-zero Return 코드를 성공으로 판단하거나  / 한 호스트에서 Failure 발생시 모든 호스트에서 중지하기를 원할수도 있습니다.
+Asible에서는 상황에 맞는 handles를 세팅할수 있도록 제공을 한다.
 
-1. 간단한 오픈소스 IT 엔진 (자동으로 Application deploy, 인프라 서비스 통합 , 많은 IT툴과 함께 클라우드 프로비저닝  
-2. yaml (직관적인 언어이며 사람이 읽고 쓰고 이해하기 쉽다.  환경파일을 위해 일반적으로 사용함.)를 사용함.   
-3. agentless이며, SSH 커텍션을 연결해서 간단한 모듈를 실행하고, 종료가 되면 제거가 된다.)  
+
+
+2. 
+3. by default it stops executing on that host and continues on other hosts
+4. 
+- 
+5. 간단한 오픈소스 IT 엔진 (자동으로 Application deploy, 인프라 서비스 통합 , 많은 IT툴과 함께 클라우드 프로비저닝  
+6. yaml (직관적인 언어이며 사람이 읽고 쓰고 이해하기 쉽다.  환경파일을 위해 일반적으로 사용함.)를 사용함.   
+7. agentless이며, SSH 커텍션을 연결해서 간단한 모듈를 실행하고, 종료가 되면 제거가 된다.)  
 
 
 # How Ansible Works?  
