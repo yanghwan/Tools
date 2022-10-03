@@ -3,11 +3,16 @@ Error 발생 ( a non-zero return code from a command / a failure from a module)�
 상황에 따라서 다르게 동작하기를 원할때가 있습니다.  
 예를 들어서 non-zero Return 코드를 성공으로 판단하거나  / 한 호스트에서 Failure 발생시 모든 호스트에서 중지하기를 원할수도 있습니다.  
 Asible에서는 상황에 맞는 handles를 세팅할수 있도록 제공을 한다.  
+Task 실행결과에 따라서  failed /  success(changed)   
 
 ### 1. 옵션
 ignore_errors: yes  :  실패하면 호스트에서 작업 실행을 중지합니다.  ignore_errors하여 실패에도 불구하고 계속 수행.  
-Defining failure  
-  
+Defining failure  
+
+failed_when : 실패조건을 재정의한다  
+
+
+
 
 3. by default it stops executing on that host and continues on other hosts
 4. 
