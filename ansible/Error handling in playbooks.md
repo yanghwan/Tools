@@ -10,6 +10,8 @@ ignore_errors: yes  :  실패하면 호스트에서 작업 실행을 중지합�
 Defining failure  
 
 failed_when : 실패조건을 재정의한다  
+https://daaa0555.tistory.com/363
+
 
 
 
